@@ -1,0 +1,1714 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="CasalFinance">
+<title>CasalFinance</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+body{background:#0a0a0a;color:#fff;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;min-height:100vh;overflow-x:hidden}
+button{cursor:pointer;border:none;outline:none;font-family:inherit}
+input,select{font-family:inherit;outline:none}
+
+/* TELAS */
+.tela{display:none;min-height:100vh}
+.tela.ativa{display:flex;flex-direction:column}
+
+/* ===== LOGIN ===== */
+#tela-login{
+  align-items:center;justify-content:center;
+  background:linear-gradient(180deg,#0a0a0a 0%,#111827 100%);
+  padding:32px 24px;
+}
+.login-logo{font-size:72px;margin-bottom:12px;text-align:center}
+.login-titulo{font-size:36px;font-weight:800;text-align:center;margin-bottom:8px}
+.login-titulo b{color:#10b981}
+.login-sub{color:#6b7280;font-size:15px;text-align:center;margin-bottom:36px;line-height:1.5}
+.login-recursos{width:100%;max-width:340px;margin-bottom:36px;display:flex;flex-direction:column;gap:12px}
+.recurso{
+  display:flex;align-items:center;gap:14px;
+  padding:14px 18px;
+  background:rgba(255,255,255,0.05);
+  border:1px solid rgba(255,255,255,0.08);
+  border-radius:16px;font-size:14px;color:#d1d5db;
+}
+.recurso span{font-size:26px}
+.btn-entrar{
+  width:100%;max-width:340px;padding:18px;
+  background:#10b981;border-radius:18px;
+  color:#fff;font-size:18px;font-weight:700;
+  transition:transform 0.15s;margin-bottom:12px;
+}
+.btn-entrar:active{transform:scale(0.96)}
+.login-obs{font-size:11px;color:#4b5563;text-align:center;margin-top:16px;line-height:1.6}
+
+/* ===== APP ===== */
+#tela-app{flex-direction:column;background:#0a0a0a}
+
+/* HEADER */
+#header{
+  background:rgba(10,10,10,0.95);
+  border-bottom:1px solid rgba(255,255,255,0.06);
+  padding:14px 16px;
+  display:flex;align-items:center;justify-content:space-between;
+  position:sticky;top:0;z-index:50;
+}
+.h-logo{font-size:17px;font-weight:800}
+.h-logo b{color:#10b981}
+.h-sub{font-size:11px;color:#6b7280;margin-top:2px}
+.h-acoes{display:flex;gap:8px}
+.h-btn{
+  width:38px;height:38px;
+  background:rgba(255,255,255,0.07);
+  border:1px solid rgba(255,255,255,0.1);
+  border-radius:12px;font-size:17px;
+  display:flex;align-items:center;justify-content:center;
+  transition:all 0.2s;
+}
+.h-btn:active{transform:scale(0.9)}
+.h-btn.ligado{background:rgba(16,185,129,0.2);border-color:rgba(16,185,129,0.4)}
+
+/* CONTEUDO */
+#conteudo{
+  flex:1;overflow-y:auto;
+  padding:16px 16px 100px;
+  max-width:480px;width:100%;margin:0 auto;
+}
+
+/* SECOES */
+.secao{display:none;flex-direction:column;align-items:center;gap:16px;width:100%}
+.secao.ativa{display:flex}
+
+/* NAV MES */
+.nav-mes{
+  display:flex;align-items:center;gap:16px;
+  font-size:14px;color:#9ca3af;font-weight:600;
+}
+.btn-mes{
+  width:32px;height:32px;
+  background:rgba(255,255,255,0.07);
+  border:1px solid rgba(255,255,255,0.1);
+  border-radius:10px;font-size:18px;color:#9ca3af;
+  display:flex;align-items:center;justify-content:center;
+  transition:all 0.2s;
+}
+.btn-mes:active{transform:scale(0.88)}
+
+/* CARDS */
+.card{
+  background:rgba(255,255,255,0.05);
+  border:1px solid rgba(255,255,255,0.08);
+  border-radius:20px;
+  padding:20px;width:100%;
+}
+
+/* SALDO */
+.saldo-card{text-align:center}
+.saldo-label{font-size:11px;color:#6b7280;text-transform:uppercase;letter-spacing:1px;margin-bottom:8px}
+.saldo-valor{font-size:38px;font-weight:800;letter-spacing:-1px}
+.saldo-verde{color:#10b981}
+.saldo-vermelho{color:#ef4444}
+
+/* STATS */
+.stats{display:grid;grid-template-columns:1fr 1fr;gap:12px;width:100%}
+.stat-card{padding:16px}
+.stat-rotulo{font-size:11px;color:#6b7280;margin-bottom:8px;display:flex;align-items:center;gap:6px}
+.stat-valor{font-size:20px;font-weight:700}
+.verde{color:#10b981}
+.vermelho{color:#ef4444}
+.roxo{color:#8b5cf6}
+
+/* VOZ */
+.voz-area{
+  display:flex;flex-direction:column;align-items:center;gap:14px;
+  width:100%;padding:8px 0;
+}
+.voz-transcricao{
+  font-size:13px;color:#9ca3af;
+  background:rgba(255,255,255,0.05);
+  border:1px solid rgba(255,255,255,0.08);
+  border-radius:14px;padding:10px 18px;
+  text-align:center;max-width:300px;
+  display:none;
+}
+.voz-transcricao.visivel{display:block}
+
+.voz-wrapper{position:relative;width:90px;height:90px;display:flex;align-items:center;justify-content:center}
+.anel{
+  position:absolute;width:90px;height:90px;border-radius:50%;
+  background:rgba(239,68,68,0.25);
+  display:none;
+}
+.anel.ativo{display:block;animation:anel-pulso 1.5s ease-out infinite}
+.anel:nth-child(2){animation-delay:0.6s}
+@keyframes anel-pulso{
+  0%{transform:scale(0.85);opacity:1}
+  100%{transform:scale(1.7);opacity:0}
+}
+.btn-voz{
+  width:82px;height:82px;border-radius:50%;
+  font-size:34px;position:relative;z-index:2;
+  background:linear-gradient(135deg,#7c3aed,#8b5cf6);
+  box-shadow:0 0 35px rgba(139,92,246,0.35);
+  transition:all 0.2s;display:flex;align-items:center;justify-content:center;
+}
+.btn-voz:active{transform:scale(0.9)}
+.btn-voz.ouvindo{
+  background:linear-gradient(135deg,#dc2626,#ef4444);
+  box-shadow:0 0 35px rgba(239,68,68,0.45);
+  animation:respirar 1.1s ease-in-out infinite;
+}
+@keyframes respirar{
+  0%,100%{transform:scale(1)}
+  50%{transform:scale(1.07)}
+}
+.voz-dica{font-size:12px;color:#4b5563}
+
+/* INPUT TEXTO */
+.input-row{display:flex;gap:10px;width:100%}
+.campo-texto{
+  flex:1;padding:14px 18px;
+  background:rgba(255,255,255,0.06);
+  border:1px solid rgba(255,255,255,0.1);
+  border-radius:16px;color:#fff;
+  font-size:16px;transition:border-color 0.2s;
+}
+.campo-texto:focus{border-color:rgba(139,92,246,0.5)}
+.campo-texto::placeholder{color:#4b5563}
+.btn-enviar{
+  width:48px;height:48px;
+  background:#8b5cf6;border-radius:14px;
+  font-size:20px;align-self:center;
+  display:flex;align-items:center;justify-content:center;
+  transition:all 0.2s;
+}
+.btn-enviar:active{transform:scale(0.9)}
+
+/* BADGE RAPIDO */
+.badge-rapido{
+  padding:7px 16px;
+  background:rgba(16,185,129,0.1);
+  border:1px solid rgba(16,185,129,0.25);
+  border-radius:20px;font-size:12px;color:#10b981;
+  display:none;
+}
+.badge-rapido.visivel{display:block}
+
+/* GRAFICO */
+.grafico-card{}
+.barra-container{
+  height:16px;border-radius:10px;
+  background:rgba(255,255,255,0.08);
+  overflow:hidden;display:flex;margin-bottom:10px;
+}
+.barra-entrada{
+  height:100%;background:linear-gradient(90deg,#059669,#10b981);
+  border-radius:10px 0 0 10px;transition:width 0.8s ease;
+}
+.barra-saida{
+  height:100%;background:linear-gradient(90deg,#dc2626,#ef4444);
+  border-radius:0 10px 10px 0;transition:width 0.8s ease;
+}
+.grafico-labels{display:flex;justify-content:space-between;font-size:11px}
+
+/* CATEGORIAS */
+.cats-titulo{font-size:12px;color:#6b7280;padding-left:2px;width:100%}
+.cats-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;width:100%}
+.cat-item{padding:14px}
+.cat-topo{display:flex;align-items:center;gap:8px;margin-bottom:8px}
+.cat-icone{font-size:22px}
+.cat-nome{font-size:12px;color:#9ca3af;font-weight:500;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.cat-entrada{font-size:13px;color:#10b981;font-weight:700}
+.cat-saida{font-size:13px;color:#ef4444;font-weight:700}
+
+/* RECENTES */
+.sec-header{display:flex;align-items:center;justify-content:space-between;width:100%;padding:0 2px}
+.sec-titulo{font-size:12px;color:#6b7280}
+.ver-todos{font-size:12px;color:#8b5cf6}
+.lista-tx{display:flex;flex-direction:column;gap:8px;width:100%}
+
+/* ITEM TRANSACAO */
+.item-tx{
+  display:flex;align-items:center;gap:12px;
+  padding:14px;cursor:pointer;transition:opacity 0.2s;
+  position:relative;
+}
+.item-tx:active{opacity:0.7}
+.icone-tx{
+  width:44px;height:44px;border-radius:14px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:20px;flex-shrink:0;
+}
+.icone-tx.entrada{background:rgba(16,185,129,0.12)}
+.icone-tx.saida{background:rgba(239,68,68,0.12)}
+.info-tx{flex:1;min-width:0}
+.tx-cat{font-size:14px;font-weight:600;color:#f1f5f9;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.tx-orig{font-size:11px;color:#4b5563;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;margin-top:2px}
+.tx-dir{text-align:right;flex-shrink:0}
+.tx-val{font-size:15px;font-weight:700}
+.tx-val.entrada{color:#10b981}
+.tx-val.saida{color:#ef4444}
+.tx-data{font-size:10px;color:#4b5563;margin-top:2px}
+.btn-del{
+  width:38px;height:38px;
+  background:rgba(239,68,68,0.15);
+  border-radius:10px;color:#ef4444;font-size:18px;
+  display:none;align-items:center;justify-content:center;
+  flex-shrink:0;transition:all 0.2s;
+}
+.btn-del:active{transform:scale(0.9)}
+.item-tx.selecionado .btn-del{display:flex}
+
+/* ESTADO VAZIO */
+.vazio{
+  text-align:center;padding:40px 20px;
+  color:#4b5563;font-size:14px;line-height:1.8;
+  width:100%;
+}
+.vazio-emoji{font-size:48px;display:block;margin-bottom:14px}
+.vazio-dicas{font-size:12px;color:#374151;margin-top:10px;font-style:italic;line-height:2}
+
+/* HISTORICO */
+.filtros{display:flex;gap:8px;width:100%;overflow-x:auto;padding-bottom:4px}
+.filtros::-webkit-scrollbar{display:none}
+.chip{
+  padding:7px 14px;border-radius:20px;
+  font-size:12px;font-weight:500;white-space:nowrap;
+  background:rgba(255,255,255,0.06);
+  border:1px solid rgba(255,255,255,0.1);
+  color:#9ca3af;transition:all 0.2s;
+}
+.chip:active{transform:scale(0.94)}
+.chip.f-todos{background:rgba(139,92,246,0.15);border-color:rgba(139,92,246,0.35);color:#8b5cf6}
+.chip.f-entrada{background:rgba(16,185,129,0.15);border-color:rgba(16,185,129,0.35);color:#10b981}
+.chip.f-saida{background:rgba(239,68,68,0.15);border-color:rgba(239,68,68,0.35);color:#ef4444}
+.chip.f-cat{background:rgba(255,255,255,0.1);border-color:rgba(255,255,255,0.2);color:#f1f5f9}
+
+.hist-header{display:flex;align-items:center;justify-content:space-between;width:100%}
+.hist-titulo{font-size:18px;font-weight:700}
+.hist-cont{font-size:12px;color:#4b5563}
+
+/* INSIGHTS */
+.ins-header{width:100%;font-size:18px;font-weight:700;display:flex;align-items:center;gap:10px}
+.insight-item{
+  width:100%;padding:16px 18px;
+  border-left:4px solid #8b5cf6;
+}
+.insight-item.aviso{border-left-color:#ef4444}
+.insight-item.previsao{border-left-color:#8b5cf6}
+.insight-item.dica{border-left-color:#10b981}
+.insight-texto{font-size:13px;color:#9ca3af;line-height:1.6}
+
+/* CONFIG */
+.cfg-titulo{width:100%;font-size:18px;font-weight:700}
+.cfg-item{
+  display:flex;align-items:center;gap:14px;
+  padding:16px 18px;cursor:pointer;
+}
+.cfg-separador{height:1px;background:rgba(255,255,255,0.06);margin:0 18px}
+.cfg-icone{font-size:24px;width:40px;text-align:center}
+.cfg-info{flex:1}
+.cfg-label{font-size:15px;font-weight:500}
+.cfg-desc{font-size:11px;color:#6b7280;margin-top:3px}
+.cfg-label-vermelho{font-size:15px;font-weight:500;color:#ef4444}
+
+.toggle{
+  width:48px;height:26px;border-radius:13px;
+  background:#374151;position:relative;
+  transition:background 0.3s;flex-shrink:0;cursor:pointer;
+}
+.toggle.on{background:#10b981}
+.toggle::after{
+  content:'';position:absolute;
+  width:20px;height:20px;border-radius:50%;
+  background:#fff;top:3px;left:3px;
+  transition:transform 0.3s;
+}
+.toggle.on::after{transform:translateX(22px)}
+
+.codigo-casal{
+  margin:0 18px 16px;padding:16px;
+  background:rgba(255,255,255,0.04);
+  border:1px solid rgba(255,255,255,0.08);
+  border-radius:14px;
+}
+.codigo-label{font-size:11px;color:#6b7280;margin-bottom:8px}
+.codigo-valor{
+  font-size:28px;font-weight:800;letter-spacing:8px;
+  color:#8b5cf6;text-align:center;margin-bottom:12px;
+}
+.btn-copiar{
+  width:100%;padding:12px;border-radius:12px;
+  background:rgba(139,92,246,0.15);
+  border:1px solid rgba(139,92,246,0.3);
+  color:#8b5cf6;font-size:14px;font-weight:600;
+  transition:all 0.2s;
+}
+.btn-copiar:active{transform:scale(0.97)}
+.parceiro-area{margin:0 18px 18px}
+.parceiro-label{font-size:11px;color:#6b7280;margin-bottom:8px}
+.parceiro-input{
+  width:100%;padding:12px 16px;
+  background:rgba(255,255,255,0.06);
+  border:1px solid rgba(255,255,255,0.1);
+  border-radius:12px;color:#fff;font-size:16px;
+  text-align:center;letter-spacing:4px;font-weight:700;
+  margin-bottom:10px;
+}
+.btn-conectar{
+  width:100%;padding:12px;border-radius:12px;
+  background:#8b5cf6;color:#fff;
+  font-size:14px;font-weight:600;
+  transition:all 0.2s;
+}
+.btn-conectar:active{transform:scale(0.97)}
+
+/* NAV INFERIOR */
+#nav{
+  position:fixed;bottom:0;left:0;right:0;
+  background:rgba(10,10,10,0.97);
+  border-top:1px solid rgba(255,255,255,0.07);
+  display:flex;padding:10px 0;
+  padding-bottom:max(10px,env(safe-area-inset-bottom));
+  z-index:50;
+}
+.nav-item{
+  flex:1;display:flex;flex-direction:column;
+  align-items:center;gap:4px;background:none;
+  color:#4b5563;font-size:11px;font-weight:500;
+  padding:4px 0;transition:color 0.2s;
+}
+.nav-item .ni{font-size:22px}
+.nav-item.ativo{color:#8b5cf6}
+
+/* MODAL */
+#modal{
+  position:fixed;inset:0;z-index:100;
+  background:rgba(0,0,0,0.75);
+  display:none;align-items:flex-end;
+  justify-content:center;padding:16px;
+}
+#modal.aberto{display:flex}
+.modal-caixa{
+  width:100%;max-width:440px;
+  background:#111827;
+  border:1px solid rgba(255,255,255,0.1);
+  border-radius:28px;
+  padding:28px;
+  padding-bottom:max(28px,env(safe-area-inset-bottom));
+  animation:subir 0.3s ease-out;
+}
+@keyframes subir{
+  from{transform:translateY(80px);opacity:0}
+  to{transform:translateY(0);opacity:1}
+}
+.modal-icone{font-size:40px;text-align:center;margin-bottom:6px}
+.modal-titulo{font-size:17px;font-weight:700;text-align:center;margin-bottom:4px}
+.modal-orig{font-size:12px;color:#4b5563;text-align:center;margin-bottom:22px}
+
+.modal-linha{
+  display:flex;align-items:center;
+  justify-content:space-between;margin-bottom:16px;
+}
+.modal-rotulo{font-size:14px;color:#9ca3af}
+
+.btns-tipo{display:flex;gap:8px}
+.btn-tipo{
+  padding:7px 14px;border-radius:12px;
+  border:1px solid rgba(255,255,255,0.1);
+  background:rgba(255,255,255,0.06);
+  color:#9ca3af;font-size:13px;
+  transition:all 0.2s;
+}
+.btn-tipo:active{transform:scale(0.93)}
+.btn-tipo.ativo-entrada{background:rgba(16,185,129,0.15);border-color:rgba(16,185,129,0.4);color:#10b981}
+.btn-tipo.ativo-saida{background:rgba(239,68,68,0.15);border-color:rgba(239,68,68,0.4);color:#ef4444}
+
+.modal-input-val{
+  width:130px;padding:8px 14px;
+  background:rgba(255,255,255,0.07);
+  border:1px solid rgba(255,255,255,0.12);
+  border-radius:12px;color:#fff;
+  font-size:16px;text-align:right;
+}
+.modal-select{
+  padding:8px 12px;
+  background:rgba(255,255,255,0.07);
+  border:1px solid rgba(255,255,255,0.12);
+  border-radius:12px;color:#fff;font-size:13px;
+  max-width:170px;
+}
+.modal-select option{background:#111827}
+
+.modal-acoes{display:flex;gap:10px;margin-top:24px}
+.btn-cancelar{
+  flex:1;padding:15px;border-radius:16px;
+  background:rgba(255,255,255,0.07);
+  border:1px solid rgba(255,255,255,0.1);
+  color:#9ca3af;font-size:15px;font-weight:600;
+  transition:all 0.2s;
+}
+.btn-cancelar:active{transform:scale(0.96)}
+.btn-salvar{
+  flex:2;padding:15px;border-radius:16px;
+  background:#8b5cf6;color:#fff;
+  font-size:15px;font-weight:700;
+  transition:all 0.2s;
+}
+.btn-salvar:active{transform:scale(0.96)}
+.btn-salvar.modo-entrada{background:#10b981}
+
+/* TOAST */
+#toast{
+  position:fixed;
+  bottom:90px;left:50%;transform:translateX(-50%);
+  background:#1f2937;border:1px solid rgba(255,255,255,0.1);
+  border-radius:16px;padding:12px 20px;
+  font-size:13px;color:#f1f5f9;
+  white-space:nowrap;max-width:92vw;text-align:center;
+  opacity:0;pointer-events:none;
+  transition:opacity 0.3s;z-index:200;
+  box-shadow:0 8px 32px rgba(0,0,0,0.5);
+}
+#toast.ver{opacity:1}
+</style>
+</head>
+<body>
+
+<!-- TELA LOGIN -->
+<div class="tela ativa" id="tela-login">
+  <div class="login-logo">💰</div>
+  <h1 class="login-titulo">Casal<b>Finance</b></h1>
+  <p class="login-sub">Controle financeiro simples<br>para vocês dois</p>
+
+  <div class="login-recursos">
+    <div class="recurso"><span>🎤</span> Registro por voz em segundos</div>
+    <div class="recurso"><span>🤖</span> Categorização automática</div>
+    <div class="recurso"><span>👫</span> Compartilhado entre o casal</div>
+    <div class="recurso"><span>📊</span> Resumo e insights inteligentes</div>
+  </div>
+
+  <button class="btn-entrar" onclick="entrar()">🚀 Começar agora</button>
+  <p class="login-obs">Seus dados ficam salvos no dispositivo.<br>Nenhuma conta necessária para começar.</p>
+</div>
+
+<!-- TELA APP -->
+<div class="tela" id="tela-app">
+
+  <!-- HEADER -->
+  <div id="header">
+    <div>
+      <div class="h-logo">💰 Casal<b>Finance</b></div>
+      <div class="h-sub" id="h-sub">Carregando...</div>
+    </div>
+    <div class="h-acoes">
+      <button class="h-btn" id="btn-rapido" onclick="alternarRapido()" title="Modo Rápido">⚡</button>
+      <button class="h-btn" onclick="sair()">🚪</button>
+    </div>
+  </div>
+
+  <!-- CONTEUDO -->
+  <div id="conteudo">
+
+    <!-- INICIO -->
+    <div class="secao ativa" id="sec-inicio">
+
+      <div class="nav-mes">
+        <button class="btn-mes" onclick="mudarMes(-1)">‹</button>
+        <span id="label-mes">Julho 2025</span>
+        <button class="btn-mes" onclick="mudarMes(1)">›</button>
+      </div>
+
+      <div class="card saldo-card">
+        <div class="saldo-label">💼 Saldo do Mês</div>
+        <div class="saldo-valor saldo-verde" id="saldo-exibido">R$ 0,00</div>
+      </div>
+
+      <div class="stats">
+        <div class="card stat-card">
+          <div class="stat-rotulo">📥 Entradas</div>
+          <div class="stat-valor verde" id="total-entradas">R$ 0,00</div>
+        </div>
+        <div class="card stat-card">
+          <div class="stat-rotulo">📤 Saídas</div>
+          <div class="stat-valor vermelho" id="total-saidas">R$ 0,00</div>
+        </div>
+      </div>
+
+      <!-- VOZ -->
+      <div class="voz-area">
+        <div class="voz-transcricao" id="voz-texto">🎤 Ouvindo...</div>
+        <div class="voz-wrapper">
+          <div class="anel" id="anel1"></div>
+          <div class="anel" id="anel2"></div>
+          <button class="btn-voz" id="btn-voz" onclick="alternarVoz()">🎤</button>
+        </div>
+        <div class="voz-dica" id="voz-dica">Toque para falar</div>
+      </div>
+
+      <!-- TEXTO -->
+      <div class="input-row">
+        <input
+          class="campo-texto"
+          id="campo"
+          type="text"
+          placeholder='Ex: "gastei 50 gasolina"'
+          onkeydown="if(event.key==='Enter'){enviarTexto()}"
+        >
+        <button class="btn-enviar" onclick="enviarTexto()">➤</button>
+      </div>
+
+      <div class="badge-rapido" id="badge-rapido">⚡ Modo rápido — registra direto!</div>
+
+      <!-- GRAFICO -->
+      <div class="card grafico-card" id="grafico" style="display:none">
+        <div class="barra-container">
+          <div class="barra-entrada" id="barra-e" style="width:0%"></div>
+          <div class="barra-saida" id="barra-s" style="width:0%"></div>
+        </div>
+        <div class="grafico-labels">
+          <span class="verde" id="label-e">Entradas 0%</span>
+          <span class="vermelho" id="label-s">Saídas 0%</span>
+        </div>
+      </div>
+
+      <!-- CATEGORIAS -->
+      <div id="area-cats" style="display:none;width:100%">
+        <div class="cats-titulo">Por Categoria</div>
+        <div class="cats-grid" id="grid-cats"></div>
+      </div>
+
+      <!-- RECENTES -->
+      <div id="area-recentes" style="display:none;width:100%">
+        <div class="sec-header">
+          <div class="sec-titulo">Últimos Registros</div>
+          <div class="ver-todos" onclick="irPara('historico')">Ver todos →</div>
+        </div>
+        <div class="lista-tx" id="lista-recentes"></div>
+      </div>
+
+      <!-- VAZIO -->
+      <div class="vazio" id="estado-vazio">
+        <span class="vazio-emoji">🎤</span>
+        <strong>Comece registrando agora!</strong><br>
+        Fale ou escreva como preferir
+        <div class="vazio-dicas">
+          "gastei 50 gasolina"<br>
+          "recebi 1200 bpc"<br>
+          "entrada 400 piscina"<br>
+          "paguei 80 mercado"
+        </div>
+      </div>
+
+    </div>
+
+    <!-- HISTORICO -->
+    <div class="secao" id="sec-historico">
+      <div class="hist-header">
+        <div class="hist-titulo">📋 Histórico</div>
+        <div class="hist-cont" id="hist-contador">0 registros</div>
+      </div>
+
+      <div class="filtros" id="filtros-tipo">
+        <button class="chip f-todos" id="chip-todos" onclick="filtrarTipo('todos')">Todos</button>
+        <button class="chip" id="chip-entrada" onclick="filtrarTipo('entrada')">📥 Entradas</button>
+        <button class="chip" id="chip-saida" onclick="filtrarTipo('saida')">📤 Saídas</button>
+      </div>
+
+      <div class="filtros" id="filtros-cat"></div>
+
+      <div class="lista-tx" id="lista-hist"></div>
+      <div class="vazio" id="hist-vazio" style="display:none">
+        <span class="vazio-emoji">📭</span>
+        Nenhum registro encontrado
+      </div>
+    </div>
+
+    <!-- INSIGHTS -->
+    <div class="secao" id="sec-insights">
+      <div class="ins-header">🧠 Insights</div>
+      <div id="lista-insights" style="width:100%;display:flex;flex-direction:column;gap:12px"></div>
+      <div class="vazio" id="insights-vazio" style="display:none">
+        <span class="vazio-emoji">🧠</span>
+        Registre mais transações<br>para ver análises aqui!
+      </div>
+    </div>
+
+    <!-- CONFIG -->
+    <div class="secao" id="sec-config">
+      <div class="cfg-titulo">⚙️ Configurações</div>
+
+      <div class="card" style="width:100%;padding:0;overflow:hidden">
+        <div class="cfg-item">
+          <div class="cfg-icone">👤</div>
+          <div class="cfg-info">
+            <div class="cfg-label" id="cfg-nome">Usuário</div>
+            <div class="cfg-desc">Logado no dispositivo</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card" style="width:100%;padding:0;overflow:hidden">
+
+        <div class="cfg-item" onclick="alternarRapido()">
+          <div class="cfg-icone">⚡</div>
+          <div class="cfg-info">
+            <div class="cfg-label">Modo Rápido</div>
+            <div class="cfg-desc">Salva sem pedir confirmação</div>
+          </div>
+          <div class="toggle" id="tog-rapido"></div>
+        </div>
+
+        <div class="cfg-separador"></div>
+
+        <div class="cfg-item" onclick="alternarVibrar()">
+          <div class="cfg-icone">📳</div>
+          <div class="cfg-info">
+            <div class="cfg-label">Vibração</div>
+            <div class="cfg-desc">Ao salvar um registro</div>
+          </div>
+          <div class="toggle on" id="tog-vibrar"></div>
+        </div>
+
+        <div class="cfg-separador"></div>
+
+        <div class="cfg-item" onclick="alternarSom()">
+          <div class="cfg-icone">🔔</div>
+          <div class="cfg-info">
+            <div class="cfg-label">Som de confirmação</div>
+            <div class="cfg-desc">Bipe ao registrar</div>
+          </div>
+          <div class="toggle on" id="tog-som"></div>
+        </div>
+
+      </div>
+
+      <!-- CODIGO CASAL -->
+      <div class="card" style="width:100%;padding:0;overflow:hidden">
+        <div class="cfg-item" style="cursor:default">
+          <div class="cfg-icone">👫</div>
+          <div class="cfg-info">
+            <div class="cfg-label">Código do Casal</div>
+            <div class="cfg-desc">Compartilhe com seu parceiro(a)</div>
+          </div>
+        </div>
+        <div class="codigo-casal">
+          <div class="codigo-label">Seu código:</div>
+          <div class="codigo-valor" id="meu-codigo">------</div>
+          <button class="btn-copiar" onclick="copiarCodigo()">📋 Copiar código</button>
+        </div>
+        <div class="cfg-separador"></div>
+        <div class="parceiro-area">
+          <div class="parceiro-label">Código do parceiro(a):</div>
+          <input class="parceiro-input" id="input-parceiro" placeholder="ABC123" maxlength="6">
+          <button class="btn-conectar" onclick="conectarParceiro()">🔗 Conectar</button>
+        </div>
+      </div>
+
+      <div class="card" style="width:100%;padding:0;overflow:hidden">
+        <div class="cfg-item" onclick="apagarTudo()">
+          <div class="cfg-icone">🗑️</div>
+          <div class="cfg-info">
+            <div class="cfg-label cfg-label-vermelho">Apagar todos os dados</div>
+            <div class="cfg-desc">Ação irreversível</div>
+          </div>
+        </div>
+      </div>
+
+      <p style="font-size:11px;color:#374151;text-align:center">CasalFinance v1.0 • Dados salvos no dispositivo</p>
+    </div>
+
+  </div><!-- /conteudo -->
+
+  <!-- NAV -->
+  <nav id="nav">
+    <button class="nav-item ativo" id="nav-inicio" onclick="irPara('inicio')">
+      <span class="ni">🏠</span>Início
+    </button>
+    <button class="nav-item" id="nav-historico" onclick="irPara('historico')">
+      <span class="ni">📋</span>Histórico
+    </button>
+    <button class="nav-item" id="nav-insights" onclick="irPara('insights')">
+      <span class="ni">🧠</span>Insights
+    </button>
+    <button class="nav-item" id="nav-config" onclick="irPara('config')">
+      <span class="ni">⚙️</span>Config
+    </button>
+  </nav>
+
+</div><!-- /tela-app -->
+
+<!-- MODAL CONFIRMACAO -->
+<div id="modal" onclick="fecharModalFora(event)">
+  <div class="modal-caixa">
+    <div class="modal-icone" id="m-icone">📝</div>
+    <div class="modal-titulo">Confirmar registro</div>
+    <div class="modal-orig" id="m-orig">"..."</div>
+
+    <div class="modal-linha">
+      <span class="modal-rotulo">Tipo</span>
+      <div class="btns-tipo">
+        <button class="btn-tipo" id="btn-entrada" onclick="setTipoModal('entrada')">📥 Entrada</button>
+        <button class="btn-tipo" id="btn-saida" onclick="setTipoModal('saida')">📤 Saída</button>
+      </div>
+    </div>
+
+    <div class="modal-linha">
+      <span class="modal-rotulo">Valor (R$)</span>
+      <input class="modal-input-val" id="m-valor" type="number" step="0.01" min="0" placeholder="0,00">
+    </div>
+
+    <div class="modal-linha">
+      <span class="modal-rotulo">Categoria</span>
+      <select class="modal-select" id="m-cat"></select>
+    </div>
+
+    <div class="modal-acoes">
+      <button class="btn-cancelar" onclick="fecharModal()">Cancelar</button>
+      <button class="btn-salvar" id="btn-salvar" onclick="confirmarSalvar()">✓ Salvar</button>
+    </div>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div id="toast"></div>
+
+<script>
+// =============================================
+// DADOS E ESTADO
+// =============================================
+var dados = {
+  nomeUsuario: 'Usuário',
+  codigoCarsal: '',
+  modoRapido: false,
+  vibrar: true,
+  som: true,
+  mesAtual: new Date(),
+  transacoes: [],
+  filtroTipo: 'todos',
+  filtroCategoria: '',
+  telaAtual: 'inicio',
+  txPendente: null,
+  tipoModal: 'saida',
+  ouvindo: false
+};
+
+// =============================================
+// CATEGORIAS
+// =============================================
+var CATS = [
+  {id:'piscina',    nome:'Piscina',          icone:'🏊', tipo:'entrada', palavras:['piscina','natação','natacao','nado','aula']},
+  {id:'salao',      nome:'Salão Laís',        icone:'💇', tipo:'entrada', palavras:['salão','salao','lais','laís','cabelo','corte','escova','unha','manicure','beleza']},
+  {id:'nene',       nome:'Trabalho Nene',     icone:'👨‍🔧', tipo:'entrada', palavras:['nene','nenê','bico','obra','pedreiro','serviço','servico']},
+  {id:'bpc',        nome:'BPC',               icone:'🏛️', tipo:'entrada', palavras:['bpc','benefício','beneficio','governo','inss','aposentadoria','pensão','pensao']},
+  {id:'mercado',    nome:'Mercado',           icone:'🛒', tipo:'saida',   palavras:['mercado','supermercado','feira','compras','comida','alimento','mercearia','padaria','açougue','acougue']},
+  {id:'gasolina',   nome:'Gasolina',          icone:'⛽', tipo:'saida',   palavras:['gasolina','combustível','combustivel','posto','álcool','alcool','diesel','abastecer','tanque']},
+  {id:'lazer',      nome:'Lazer',             icone:'🎉', tipo:'saida',   palavras:['lazer','diversão','diversao','cinema','restaurante','pizza','lanche','sorveteria','passeio','festa','bar']},
+  {id:'contas',     nome:'Contas',            icone:'📄', tipo:'saida',   palavras:['conta','contas','luz','água','agua','energia','internet','telefone','celular','aluguel','boleto','fatura','cartão','cartao','parcela','gás','gas']},
+  {id:'saude',      nome:'Saúde',             icone:'🏥', tipo:'saida',   palavras:['saúde','saude','médico','medico','remédio','remedio','farmácia','farmacia','hospital','consulta','exame','dentista']},
+  {id:'transporte', nome:'Transporte',        icone:'🚗', tipo:'saida',   palavras:['transporte','uber','ônibus','onibus','moto','carro','mecânico','mecanico','oficina','pneu','óleo','oleo']},
+  {id:'trabalho',   nome:'Salário/Trabalho',  icone:'💼', tipo:'entrada', palavras:['salário','salario','pagamento','trabalho','freelance','renda']},
+  {id:'outros_e',   nome:'Outros (Entrada)',  icone:'💰', tipo:'entrada', palavras:[]},
+  {id:'outros_s',   nome:'Outros (Saída)',    icone:'💸', tipo:'saida',   palavras:[]}
+];
+
+var PALAVRAS_SAIDA   = ['gastei','gasto','paguei','pago','comprei','compra','saída','saida','débito','debito','tirei','retirei','custou','custa'];
+var PALAVRAS_ENTRADA = ['recebi','recebido','ganhei','ganho','entrada','entrou','depósito','deposito','vendi','venda','faturei','lucro','renda','salário','salario'];
+
+// =============================================
+// NLP
+// =============================================
+function normalizar(t) {
+  return t.toLowerCase()
+    .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+    .replace(/\s+/g, ' ').trim();
+}
+
+function extrairValor(texto) {
+  var t = texto.toLowerCase();
+  var m;
+
+  // R$ 1.234,56 ou R$50
+  m = t.match(/r\$\s*(\d[\d.,]*)/);
+  if (m) {
+    var n = m[1].replace(/\./g, '').replace(',', '.');
+    var v = parseFloat(n);
+    if (!isNaN(v) && v > 0) return v;
+  }
+
+  // 1.234,56
+  m = t.match(/(\d{1,3}(?:\.\d{3})+,\d{1,2})/);
+  if (m) {
+    return parseFloat(m[1].replace(/\./g, '').replace(',', '.'));
+  }
+
+  // 234,56
+  m = t.match(/(\d+,\d{1,2})/);
+  if (m) {
+    return parseFloat(m[1].replace(',', '.'));
+  }
+
+  // numero simples como 50 ou 1200 ou 50.00
+  m = t.match(/(\d+(?:\.\d{1,2})?)/);
+  if (m) {
+    var v2 = parseFloat(m[1]);
+    if (!isNaN(v2) && v2 > 0) return v2;
+  }
+
+  // numeros escritos
+  var escritos = {cem:100,cento:100,duzentos:200,trezentos:300,quatrocentos:400,quinhentos:500,seiscentos:600,setecentos:700,oitocentos:800,novecentos:900,mil:1000,dez:10,vinte:20,trinta:30,quarenta:40,cinquenta:50,sessenta:60,setenta:70,oitenta:80,noventa:90};
+  for (var p in escritos) {
+    if (t.indexOf(p) !== -1) return escritos[p];
+  }
+  return 0;
+}
+
+function detectarTipo(texto) {
+  var n = normalizar(texto);
+  var pe = 0, ps = 0;
+  for (var i = 0; i < PALAVRAS_ENTRADA.length; i++) {
+    if (n.indexOf(normalizar(PALAVRAS_ENTRADA[i])) !== -1) pe += PALAVRAS_ENTRADA[i].length;
+  }
+  for (var j = 0; j < PALAVRAS_SAIDA.length; j++) {
+    if (n.indexOf(normalizar(PALAVRAS_SAIDA[j])) !== -1) ps += PALAVRAS_SAIDA[j].length;
+  }
+  if (pe > ps) return 'entrada';
+  if (ps > pe) return 'saida';
+  return 'saida';
+}
+
+function encontrarCategoria(texto, tipo) {
+  var n = normalizar(texto);
+  var melhor = null, melhorPontos = 0;
+  for (var i = 0; i < CATS.length; i++) {
+    var cat = CATS[i];
+    for (var j = 0; j < cat.palavras.length; j++) {
+      var kn = normalizar(cat.palavras[j]);
+      if (n.indexOf(kn) !== -1) {
+        var pts = kn.length;
+        if (pts > melhorPontos) {
+          melhorPontos = pts;
+          melhor = cat;
+        }
+      }
+    }
+  }
+  if (melhor) return melhor;
+  for (var k = 0; k < CATS.length; k++) {
+    if (CATS[k].id === (tipo === 'entrada' ? 'outros_e' : 'outros_s')) return CATS[k];
+  }
+  return CATS[CATS.length - 1];
+}
+
+function parsearTexto(texto) {
+  var tipo = detectarTipo(texto);
+  var valor = extrairValor(texto);
+  var cat = encontrarCategoria(texto, tipo);
+  return { tipo: tipo, valor: valor, categoria: cat.nome, icone: cat.icone, textoOriginal: texto };
+}
+
+function getCat(nome) {
+  for (var i = 0; i < CATS.length; i++) {
+    if (CATS[i].nome === nome) return CATS[i];
+  }
+  return CATS[CATS.length - 1];
+}
+
+// =============================================
+// STORAGE
+// =============================================
+function salvarTudo() {
+  try {
+    localStorage.setItem('cf2_tx', JSON.stringify(dados.transacoes));
+    localStorage.setItem('cf2_nome', dados.nomeUsuario);
+    localStorage.setItem('cf2_cod', dados.codigoCarsal);
+    localStorage.setItem('cf2_rapido', dados.modoRapido ? '1' : '0');
+    localStorage.setItem('cf2_vibrar', dados.vibrar ? '1' : '0');
+    localStorage.setItem('cf2_som', dados.som ? '1' : '0');
+    localStorage.setItem('cf2_login', '1');
+  } catch(e) {}
+}
+
+function carregarTudo() {
+  try {
+    var tx = localStorage.getItem('cf2_tx');
+    if (tx) dados.transacoes = JSON.parse(tx);
+    dados.nomeUsuario = localStorage.getItem('cf2_nome') || 'Usuário';
+    dados.codigoCarsal = localStorage.getItem('cf2_cod') || gerarCodigo();
+    dados.modoRapido = localStorage.getItem('cf2_rapido') === '1';
+    dados.vibrar = localStorage.getItem('cf2_vibrar') !== '0';
+    dados.som = localStorage.getItem('cf2_som') !== '0';
+  } catch(e) {
+    dados.transacoes = [];
+  }
+}
+
+function gerarCodigo() {
+  var chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
+  var c = '';
+  for (var i = 0; i < 6; i++) c += chars[Math.floor(Math.random() * chars.length)];
+  return c;
+}
+
+// =============================================
+// LOGIN / LOGOUT
+// =============================================
+function entrar() {
+  carregarTudo();
+  if (!dados.codigoCarsal) dados.codigoCarsal = gerarCodigo();
+  salvarTudo();
+  document.getElementById('tela-login').classList.remove('ativa');
+  document.getElementById('tela-app').classList.add('ativa');
+  iniciarApp();
+}
+
+function sair() {
+  if (confirm('Sair do app? Seus dados continuam salvos.')) {
+    document.getElementById('tela-app').classList.remove('ativa');
+    document.getElementById('tela-login').classList.add('ativa');
+  }
+}
+
+function iniciarApp() {
+  atualizarHeader();
+  atualizarConfig();
+  popularSelectCats();
+  renderizarDashboard();
+  renderizarCategorias();
+  renderizarRecentes();
+  renderizarHistorico();
+  renderizarInsights();
+  aplicarModoRapido();
+}
+
+// =============================================
+// HEADER
+// =============================================
+function atualizarHeader() {
+  var m = dados.mesAtual;
+  var nomeMes = m.toLocaleDateString('pt-BR', {month:'long', year:'numeric'});
+  nomeMes = nomeMes.charAt(0).toUpperCase() + nomeMes.slice(1);
+  document.getElementById('label-mes').textContent = nomeMes;
+  document.getElementById('h-sub').textContent = nomeMes + ' • ' + dados.nomeUsuario;
+}
+
+// =============================================
+// TRANSACOES DO MES
+// =============================================
+function txDoMes(data) {
+  var d = data || dados.mesAtual;
+  var m = d.getMonth(), a = d.getFullYear();
+  var resultado = [];
+  for (var i = 0; i < dados.transacoes.length; i++) {
+    var t = dados.transacoes[i];
+    var dt = new Date(t.criadoEm);
+    if (dt.getMonth() === m && dt.getFullYear() === a) resultado.push(t);
+  }
+  return resultado;
+}
+
+// =============================================
+// DASHBOARD
+// =============================================
+function renderizarDashboard() {
+  var txs = txDoMes();
+  var ent = 0, sai = 0;
+  for (var i = 0; i < txs.length; i++) {
+    if (txs[i].tipo === 'entrada') ent += txs[i].valor;
+    else sai += txs[i].valor;
+  }
+  var saldo = ent - sai;
+
+  var elSaldo = document.getElementById('saldo-exibido');
+  elSaldo.textContent = fmt(saldo);
+  elSaldo.className = 'saldo-valor ' + (saldo >= 0 ? 'saldo-verde' : 'saldo-vermelho');
+
+  document.getElementById('total-entradas').textContent = fmt(ent);
+  document.getElementById('total-saidas').textContent = fmt(sai);
+
+  // grafico
+  var total = ent + sai;
+  var graf = document.getElementById('grafico');
+  if (total > 0) {
+    graf.style.display = 'block';
+    var pe = (ent / total * 100).toFixed(1);
+    var ps = (sai / total * 100).toFixed(1);
+    document.getElementById('barra-e').style.width = pe + '%';
+    document.getElementById('barra-s').style.width = ps + '%';
+    document.getElementById('label-e').textContent = 'Entradas ' + Math.round(pe) + '%';
+    document.getElementById('label-s').textContent = 'Saídas ' + Math.round(ps) + '%';
+  } else {
+    graf.style.display = 'none';
+  }
+}
+
+// =============================================
+// CATEGORIAS
+// =============================================
+function renderizarCategorias() {
+  var txs = txDoMes();
+  var porCat = {};
+  for (var i = 0; i < txs.length; i++) {
+    var t = txs[i];
+    if (!porCat[t.categoria]) porCat[t.categoria] = {ent:0, sai:0, icone: t.icone || '📝'};
+    if (t.tipo === 'entrada') porCat[t.categoria].ent += t.valor;
+    else porCat[t.categoria].sai += t.valor;
+  }
+
+  var entries = [];
+  for (var c in porCat) {
+    entries.push([c, porCat[c]]);
+  }
+  entries.sort(function(a,b){ return (b[1].ent+b[1].sai)-(a[1].ent+a[1].sai); });
+
+  var area = document.getElementById('area-cats');
+  var grid = document.getElementById('grid-cats');
+  var vazio = document.getElementById('estado-vazio');
+
+  if (entries.length === 0) {
+    area.style.display = 'none';
+    vazio.style.display = 'block';
+    return;
+  }
+
+  vazio.style.display = 'none';
+  area.style.display = 'block';
+
+  var html = '';
+  for (var j = 0; j < entries.length; j++) {
+    var nome = entries[j][0];
+    var d = entries[j][1];
+    html += '<div class="card cat-item">';
+    html += '<div class="cat-topo"><span class="cat-icone">' + d.icone + '</span><span class="cat-nome">' + nome + '</span></div>';
+    if (d.ent > 0) html += '<div class="cat-entrada">+ ' + fmtC(d.ent) + '</div>';
+    if (d.sai > 0) html += '<div class="cat-saida">- ' + fmtC(d.sai) + '</div>';
+    html += '</div>';
+  }
+  grid.innerHTML = html;
+}
+
+// =============================================
+// RECENTES
+// =============================================
+function renderizarRecentes() {
+  var txs = txDoMes();
+  txs.sort(function(a,b){ return new Date(b.criadoEm) - new Date(a.criadoEm); });
+  var cinco = txs.slice(0, 5);
+
+  var area = document.getElementById('area-recentes');
+  var lista = document.getElementById('lista-recentes');
+
+  if (cinco.length === 0) {
+    area.style.display = 'none';
+    return;
+  }
+  area.style.display = 'block';
+  lista.innerHTML = cinco.map(htmlTx).join('');
+}
+
+// =============================================
+// HTML DE TRANSACAO
+// =============================================
+function htmlTx(t) {
+  var d = new Date(t.criadoEm);
+  var hoje = new Date();
+    var ontem = new Date();
+    ontem.setDate(ontem.getDate()-1);
+  var strData;
+  if (d.toDateString() === hoje.toDateString()) {
+    strData = 'Hoje ' + d.toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'});
+  } else if (d.toDateString() === ontem.toDateString()) {
+    strData = 'Ontem';
+  } else {
+    strData = d.toLocaleDateString('pt-BR',{day:'2-digit',month:'short'});
+  }
+
+  var sinal = t.tipo === 'entrada' ? '+' : '-';
+  var cor = t.tipo === 'entrada' ? 'entrada' : 'saida';
+
+  return '<div class="card item-tx" id="itx-' + t.id + '" onclick="selecionarTx(\'' + t.id + '\')">' +
+    '<div class="icone-tx ' + cor + '">' + (t.icone||'📝') + '</div>' +
+    '<div class="info-tx">' +
+      '<div class="tx-cat">' + t.categoria + '</div>' +
+      '<div class="tx-orig">' + t.textoOriginal + '</div>' +
+    '</div>' +
+    '<div class="tx-dir">' +
+      '<div class="tx-val ' + cor + '">' + sinal + ' ' + fmt(t.valor) + '</div>' +
+      '<div class="tx-data">' + strData + '</div>' +
+    '</div>' +
+    '<button class="btn-del" onclick="deletarTx(event,\'' + t.id + '\')">🗑️</button>' +
+  '</div>';
+}
+
+function selecionarTx(id) {
+  var el = document.getElementById('itx-' + id);
+  if (el) el.classList.toggle('selecionado');
+}
+
+function deletarTx(ev, id) {
+  ev.stopPropagation();
+  dados.transacoes = dados.transacoes.filter(function(t){ return t.id !== id; });
+  salvarTudo();
+  renderizarTudo();
+  vibrar();
+  mostrarToast('🗑️ Registro removido');
+}
+
+// =============================================
+// HISTORICO
+// =============================================
+function filtrarTipo(tipo) {
+  dados.filtroTipo = tipo;
+  dados.filtroCategoria = '';
+
+  var chips = ['todos','entrada','saida'];
+  var classes = {todos:'f-todos', entrada:'f-entrada', saida:'f-saida'};
+  for (var i = 0; i < chips.length; i++) {
+    var el = document.getElementById('chip-' + chips[i]);
+    el.className = 'chip' + (chips[i] === tipo ? ' ' + classes[chips[i]] : '');
+  }
+  renderizarHistorico();
+}
+
+function filtrarCategoria(cat) {
+  dados.filtroCategoria = dados.filtroCategoria === cat ? '' : cat;
+  renderizarHistorico();
+  renderizarFiltrosCat();
+}
+
+function renderizarFiltrosCat() {
+  var txs = txDoMes();
+  var catsVistas = {};
+  for (var i = 0; i < txs.length; i++) {
+    catsVistas[txs[i].categoria] = txs[i].icone || '📝';
+  }
+
+  var html = '';
+  for (var c in catsVistas) {
+    var ativo = dados.filtroCategoria === c;
+    html += '<button class="chip' + (ativo ? ' f-cat' : '') + '" onclick="filtrarCategoria(\'' + c.replace(/'/g,"\\'") + '\')">' + catsVistas[c] + ' ' + c + '</button>';
+  }
+  document.getElementById('filtros-cat').innerHTML = html;
+}
+
+function renderizarHistorico() {
+  var txs = txDoMes();
+  if (dados.filtroTipo !== 'todos') {
+    txs = txs.filter(function(t){ return t.tipo === dados.filtroTipo; });
+  }
+  if (dados.filtroCategoria) {
+    txs = txs.filter(function(t){ return t.categoria === dados.filtroCategoria; });
+  }
+  txs.sort(function(a,b){ return new Date(b.criadoEm) - new Date(a.criadoEm); });
+
+  document.getElementById('hist-contador').textContent = txs.length + ' registros';
+  var lista = document.getElementById('lista-hist');
+  var vazio = document.getElementById('hist-vazio');
+
+  if (txs.length === 0) {
+    lista.innerHTML = '';
+    vazio.style.display = 'block';
+  } else {
+    vazio.style.display = 'none';
+    lista.innerHTML = txs.map(htmlTx).join('');
+  }
+  renderizarFiltrosCat();
+}
+
+// =============================================
+// INSIGHTS
+// =============================================
+function renderizarInsights() {
+  var txs = txDoMes();
+  var ent = 0, sai = 0;
+  for (var i = 0; i < txs.length; i++) {
+    if (txs[i].tipo === 'entrada') ent += txs[i].valor;
+    else sai += txs[i].valor;
+  }
+  var saldo = ent - sai;
+
+  var lista = document.getElementById('lista-insights');
+  var vazio = document.getElementById('insights-vazio');
+
+  if (txs.length === 0) {
+    lista.innerHTML = '';
+    vazio.style.display = 'block';
+    return;
+  }
+  vazio.style.display = 'none';
+
+  var itens = [];
+
+  if (saldo < 0) {
+    itens.push({tipo:'aviso', texto:'⚠️ Atenção! Você está no vermelho. Saídas superam entradas em ' + fmt(Math.abs(saldo)) + '.'});
+  } else {
+    itens.push({tipo:'dica', texto:'✅ Ótimo! Você está com saldo positivo de ' + fmt(saldo) + ' este mês.'});
+  }
+
+  var hoje = new Date();
+  var diasMes = new Date(hoje.getFullYear(), hoje.getMonth()+1, 0).getDate();
+  var diasPassados = hoje.getDate();
+  if (diasPassados > 3) {
+    var projSai = (sai / diasPassados) * diasMes;
+    var projSaldo = ent - projSai;
+    itens.push({tipo:'previsao', texto:'🔮 Previsão: no ritmo atual, você deve terminar o mês com ' + fmt(projSaldo) + '.'});
+  }
+
+  var porCatSai = {};
+  for (var j = 0; j < txs.length; j++) {
+    var t = txs[j];
+    if (t.tipo === 'saida') {
+      porCatSai[t.categoria] = (porCatSai[t.categoria] || 0) + t.valor;
+    }
+  }
+  var maisCara = null, maiorVal = 0;
+  for (var c in porCatSai) {
+    if (porCatSai[c] > maiorVal) { maiorVal = porCatSai[c]; maisCara = c; }
+  }
+  if (maisCara && sai > 0) {
+    var pct = ((maiorVal / sai) * 100).toFixed(0);
+    itens.push({tipo:'aviso', texto:'📊 Maior despesa: "' + maisCara + '" com ' + fmt(maiorVal) + ' (' + pct + '% das saídas).'});
+  }
+
+  var mercado = porCatSai['Mercado'] || 0;
+  if (mercado > 400) {
+    itens.push({tipo:'dica', texto:'🛒 Gastos com Mercado estão em ' + fmt(mercado) + '. Que tal fazer uma lista antes de ir?'});
+  }
+
+  var fontes = 0;
+  var porCatEnt = {};
+  for (var k = 0; k < txs.length; k++) {
+    if (txs[k].tipo === 'entrada') porCatEnt[txs[k].categoria] = 1;
+  }
+  for (var x in porCatEnt) fontes++;
+  if (fontes >= 2) {
+    itens.push({tipo:'dica', texto:'💪 Você tem ' + fontes + ' fontes de renda este mês. Ótimo!'});
+  }
+
+  lista.innerHTML = itens.map(function(it){
+    return '<div class="card insight-item ' + it.tipo + '"><div class="insight-texto">' + it.texto + '</div></div>';
+  }).join('');
+}
+
+// =============================================
+// RENDERIZAR TUDO
+// =============================================
+function renderizarTudo() {
+  renderizarDashboard();
+  renderizarCategorias();
+  renderizarRecentes();
+  renderizarHistorico();
+  renderizarInsights();
+}
+
+// =============================================
+// VOZ
+// =============================================
+var reconhecimento = null;
+
+function alternarVoz() {
+  if (dados.ouvindo) {
+    pararVoz();
+  } else {
+    iniciarVoz();
+  }
+}
+
+function iniciarVoz() {
+  var SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+  if (!SR) {
+    mostrarToast('❌ Seu dispositivo não suporta voz. Use o campo de texto abaixo.');
+    return;
+  }
+
+  reconhecimento = new SR();
+  reconhecimento.lang = 'pt-BR';
+  reconhecimento.interimResults = true;
+  reconhecimento.maxAlternatives = 3;
+  reconhecimento.continuous = false;
+
+  reconhecimento.onstart = function() {
+    dados.ouvindo = true;
+    atualizarUIVoz();
+  };
+
+  reconhecimento.onresult = function(ev) {
+    var final = '', interim = '';
+    for (var i = ev.resultIndex; i < ev.results.length; i++) {
+      if (ev.results[i].isFinal) final += ev.results[i][0].transcript;
+      else interim += ev.results[i][0].transcript;
+    }
+    var texto = final || interim;
+    var elTx = document.getElementById('voz-texto');
+    elTx.textContent = '🎤 "' + texto + '"';
+    elTx.classList.add('visivel');
+
+    if (final) {
+      pararVoz();
+      processarEntrada(final.trim());
+    }
+  };
+
+  reconhecimento.onerror = function(ev) {
+    pararVoz();
+    if (ev.error === 'no-speech') mostrarToast('🔇 Não ouvi nada. Tente de novo.');
+    else if (ev.error === 'not-allowed') mostrarToast('🚫 Permissão do microfone negada.');
+    else mostrarToast('❌ Erro: ' + ev.error);
+  };
+
+  reconhecimento.onend = function() {
+    dados.ouvindo = false;
+    atualizarUIVoz();
+    document.getElementById('voz-texto').classList.remove('visivel');
+  };
+
+  try {
+    reconhecimento.start();
+    vibrar(30);
+  } catch(e) {
+    mostrarToast('❌ Erro ao iniciar microfone.');
+    dados.ouvindo = false;
+    atualizarUIVoz();
+  }
+}
+
+function pararVoz() {
+  dados.ouvindo = false;
+  if (reconhecimento) {
+    try { reconhecimento.stop(); } catch(e) {}
+  }
+  atualizarUIVoz();
+  document.getElementById('voz-texto').classList.remove('visivel');
+}
+
+function atualizarUIVoz() {
+  var btn = document.getElementById('btn-voz');
+  var a1 = document.getElementById('anel1');
+  var a2 = document.getElementById('anel2');
+  var dica = document.getElementById('voz-dica');
+
+  if (dados.ouvindo) {
+    btn.textContent = '🔴';
+    btn.classList.add('ouvindo');
+    a1.classList.add('ativo');
+    a2.classList.add('ativo');
+    dica.textContent = 'Ouvindo... toque para parar';
+  } else {
+    btn.textContent = '🎤';
+    btn.classList.remove('ouvindo');
+    a1.classList.remove('ativo');
+    a2.classList.remove('ativo');
+    dica.textContent = 'Toque para falar';
+  }
+}
+
+// =============================================
+// INPUT TEXTO
+// =============================================
+function enviarTexto() {
+  var campo = document.getElementById('campo');
+  var texto = campo.value.trim();
+  if (!texto) return;
+  campo.value = '';
+  processarEntrada(texto);
+}
+
+// =============================================
+// PROCESSAR ENTRADA
+// =============================================
+function processarEntrada(texto) {
+  if (!texto) return;
+  var parsed = parsearTexto(texto);
+
+  if (parsed.valor <= 0) {
+    mostrarToast('❌ Não identifiquei o valor. Ex: "gastei 50 gasolina"');
+    return;
+  }
+
+  if (dados.modoRapido) {
+    salvarTransacao(parsed);
+  } else {
+    abrirModal(parsed);
+  }
+}
+
+// =============================================
+// SALVAR TRANSACAO
+// =============================================
+function salvarTransacao(parsed) {
+  var catObj = getCat(parsed.categoria);
+  var tx = {
+    id: 'tx' + Date.now() + Math.random().toString(36).substr(2,6),
+    tipo: parsed.tipo,
+    valor: parsed.valor,
+    categoria: parsed.categoria,
+    icone: catObj.icone,
+    textoOriginal: parsed.textoOriginal,
+    criadoEm: new Date().toISOString(),
+    usuario: dados.nomeUsuario
+  };
+
+  dados.transacoes.unshift(tx);
+  salvarTudo();
+  aoSalvar(tx);
+}
+
+function aoSalvar(tx) {
+  tocarBeep();
+  vibrar([30,40,30]);
+  renderizarTudo();
+  var sinal = tx.tipo === 'entrada' ? '+' : '-';
+  var emoji = tx.tipo === 'entrada' ? '📥' : '📤';
+  mostrarToast(emoji + ' ' + sinal + ' ' + fmt(tx.valor) + ' em ' + tx.categoria + ' ✅');
+}
+
+// =============================================
+// MODAL
+// =============================================
+function popularSelectCats() {
+  var sel = document.getElementById('m-cat');
+  sel.innerHTML = CATS.map(function(c){
+    return '<option value="' + c.nome + '">' + c.icone + ' ' + c.nome + '</option>';
+  }).join('');
+}
+
+function abrirModal(parsed) {
+  dados.txPendente = parsed;
+  dados.tipoModal = parsed.tipo;
+
+  document.getElementById('m-orig').textContent = '"' + parsed.textoOriginal + '"';
+  document.getElementById('m-icone').textContent = parsed.icone || '📝';
+  document.getElementById('m-valor').value = parsed.valor.toFixed(2);
+
+  var sel = document.getElementById('m-cat');
+  for (var i = 0; i < sel.options.length; i++) {
+    if (sel.options[i].value === parsed.categoria) { sel.selectedIndex = i; break; }
+  }
+
+  atualizarTipoModal(parsed.tipo);
+  document.getElementById('modal').classList.add('aberto');
+}
+
+function fecharModal() {
+  document.getElementById('modal').classList.remove('aberto');
+  dados.txPendente = null;
+}
+
+function fecharModalFora(ev) {
+  if (ev.target === document.getElementById('modal')) fecharModal();
+}
+
+function setTipoModal(tipo) {
+  dados.tipoModal = tipo;
+  atualizarTipoModal(tipo);
+}
+
+function atualizarTipoModal(tipo) {
+  var btnE = document.getElementById('btn-entrada');
+  var btnS = document.getElementById('btn-saida');
+  var btnSalvar = document.getElementById('btn-salvar');
+
+  btnE.className = 'btn-tipo' + (tipo === 'entrada' ? ' ativo-entrada' : '');
+  btnS.className = 'btn-tipo' + (tipo === 'saida' ? ' ativo-saida' : '');
+  btnSalvar.className = 'btn-salvar' + (tipo === 'entrada' ? ' modo-entrada' : '');
+}
+
+function confirmarSalvar() {
+  var valor = parseFloat(document.getElementById('m-valor').value) || 0;
+  var cat = document.getElementById('m-cat').value;
+  var catObj = getCat(cat);
+
+  if (valor <= 0) { mostrarToast('❌ Informe um valor válido'); return; }
+
+  var tx = {
+    id: 'tx' + Date.now() + Math.random().toString(36).substr(2,6),
+    tipo: dados.tipoModal,
+    valor: valor,
+    categoria: cat,
+    icone: catObj.icone,
+    textoOriginal: dados.txPendente ? dados.txPendente.textoOriginal : cat,
+    criadoEm: new Date().toISOString(),
+    usuario: dados.nomeUsuario
+  };
+
+  dados.transacoes.unshift(tx);
+  salvarTudo();
+  fecharModal();
+  aoSalvar(tx);
+}
+
+// =============================================
+// NAVEGACAO
+// =============================================
+function irPara(tela) {
+  dados.telaAtual = tela;
+
+  var secoes = ['inicio','historico','insights','config'];
+  for (var i = 0; i < secoes.length; i++) {
+    var s = secoes[i];
+    document.getElementById('sec-' + s).className = 'secao' + (s === tela ? ' ativa' : '');
+    document.getElementById('nav-' + s).className = 'nav-item' + (s === tela ? ' ativo' : '');
+  }
+
+  if (tela === 'historico') { renderizarHistorico(); }
+  if (tela === 'insights')  { renderizarInsights(); }
+  if (tela === 'config')    { atualizarConfig(); }
+}
+
+// =============================================
+// MES
+// =============================================
+function mudarMes(dir) {
+  var d = new Date(dados.mesAtual);
+  d.setMonth(d.getMonth() + dir);
+  dados.mesAtual = d;
+  atualizarHeader();
+  renderizarTudo();
+}
+
+// =============================================
+// MODO RAPIDO
+// =============================================
+function alternarRapido() {
+  dados.modoRapido = !dados.modoRapido;
+  salvarTudo();
+  aplicarModoRapido();
+  mostrarToast(dados.modoRapido ? '⚡ Modo rápido ativado!' : '⚡ Modo rápido desativado');
+}
+
+function aplicarModoRapido() {
+  var badge = document.getElementById('badge-rapido');
+  var btnR = document.getElementById('btn-rapido');
+  var tog = document.getElementById('tog-rapido');
+
+  badge.className = 'badge-rapido' + (dados.modoRapido ? ' visivel' : '');
+  btnR.className = 'h-btn' + (dados.modoRapido ? ' ligado' : '');
+  if (tog) tog.className = 'toggle' + (dados.modoRapido ? ' on' : '');
+}
+
+// =============================================
+// VIBRAR / SOM
+// =============================================
+function alternarVibrar() {
+  dados.vibrar = !dados.vibrar;
+  salvarTudo();
+  var tog = document.getElementById('tog-vibrar');
+  if (tog) tog.className = 'toggle' + (dados.vibrar ? ' on' : '');
+}
+
+function alternarSom() {
+  dados.som = !dados.som;
+  salvarTudo();
+  var tog = document.getElementById('tog-som');
+  if (tog) tog.className = 'toggle' + (dados.som ? ' on' : '');
+}
+
+function vibrar(padrao) {
+  if (dados.vibrar && 'vibrate' in navigator) {
+    navigator.vibrate(padrao || 50);
+  }
+}
+
+function tocarBeep() {
+  if (!dados.som) return;
+  try {
+    var ctx = new (window.AudioContext || window.webkitAudioContext)();
+    var osc = ctx.createOscillator();
+    var gain = ctx.createGain();
+    osc.connect(gain);
+    gain.connect(ctx.destination);
+    osc.frequency.setValueAtTime(880, ctx.currentTime);
+    osc.frequency.setValueAtTime(1100, ctx.currentTime + 0.12);
+    gain.gain.setValueAtTime(0.08, ctx.currentTime);
+    gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.3);
+    osc.start();
+    osc.stop(ctx.currentTime + 0.3);
+  } catch(e) {}
+}
+
+// =============================================
+// CONFIG
+// =============================================
+function atualizarConfig() {
+  var elNome = document.getElementById('cfg-nome');
+  var elCod = document.getElementById('meu-codigo');
+  var togR = document.getElementById('tog-rapido');
+  var togV = document.getElementById('tog-vibrar');
+  var togS = document.getElementById('tog-som');
+
+  if (elNome) elNome.textContent = dados.nomeUsuario;
+  if (elCod) elCod.textContent = dados.codigoCarsal;
+  if (togR) togR.className = 'toggle' + (dados.modoRapido ? ' on' : '');
+  if (togV) togV.className = 'toggle' + (dados.vibrar ? ' on' : '');
+  if (togS) togS.className = 'toggle' + (dados.som ? ' on' : '');
+}
+
+function copiarCodigo() {
+  var cod = dados.codigoCarsal;
+  if (navigator.clipboard) {
+    navigator.clipboard.writeText(cod).then(function(){
+      mostrarToast('📋 Código copiado: ' + cod);
+    });
+  } else {
+    mostrarToast('📋 Seu código: ' + cod);
+  }
+}
+
+function conectarParceiro() {
+  var cod = document.getElementById('input-parceiro').value.trim().toUpperCase();
+  if (cod.length !== 6) { mostrarToast('❌ Código inválido. Deve ter 6 caracteres.'); return; }
+  mostrarToast('✅ Código salvo! Compartilhe seus dados com ' + cod);
+}
+
+function apagarTudo() {
+  if (confirm('⚠️ Apagar TODOS os registros?\nEsta ação não pode ser desfeita!')) {
+    if (confirm('Tem certeza? Todos os dados serão perdidos!')) {
+      dados.transacoes = [];
+      salvarTudo();
+      renderizarTudo();
+      mostrarToast('🗑️ Todos os dados foram apagados');
+    }
+  }
+}
+
+// =============================================
+// TOAST
+// =============================================
+var toastTimer = null;
+function mostrarToast(msg) {
+  var el = document.getElementById('toast');
+  el.textContent = msg;
+  el.classList.add('ver');
+  if (toastTimer) clearTimeout(toastTimer);
+  toastTimer = setTimeout(function(){ el.classList.remove('ver'); }, 3200);
+}
+
+// =============================================
+// FORMATADORES
+// =============================================
+function fmt(v) {
+  return new Intl.NumberFormat('pt-BR', {style:'currency', currency:'BRL'}).format(v);
+}
+function fmtC(v) {
+  if (v >= 1000) return 'R$' + (v/1000).toFixed(1) + 'k';
+  return 'R$' + v.toFixed(0);
+}
+
+// =============================================
+// INICIALIZAR
+// =============================================
+window.onload = function() {
+  carregarTudo();
+  var logado = localStorage.getItem('cf2_login');
+  if (logado) {
+    document.getElementById('tela-login').classList.remove('ativa');
+    document.getElementById('tela-app').classList.add('ativa');
+    iniciarApp();
+  }
+};
+</script>
+</body>
+</html>
