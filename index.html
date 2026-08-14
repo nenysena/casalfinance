@@ -10,7 +10,7 @@
 *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 body{background:#0a0a0a;color:#fff;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;min-height:100vh;overflow-x:hidden}
 button{cursor:pointer;border:none;outline:none;font-family:inherit}
-input,select{font-family:inherit;outline:none}
+input,select,textarea{font-family:inherit;outline:none}
 .tela{display:none;min-height:100vh}
 .tela.ativa{display:flex;flex-direction:column}
 #tela-login,#tela-codigo{align-items:center;justify-content:center;background:linear-gradient(180deg,#0a0a0a,#111827);padding:32px 24px}
@@ -225,7 +225,6 @@ input,select{font-family:inherit;outline:none}
 .nav-item.atencao{color:#f59e0b}
 .nav-item .badge-nav{position:absolute;top:0;right:18%;background:#ef4444;color:white;font-size:8px;font-weight:700;border-radius:8px;min-width:14px;height:14px;padding:0 4px;display:flex;align-items:center;justify-content:center}
 .nav-item.atencao .badge-nav{background:#f59e0b}
-/* CALENDARIO PISCINA */
 .piscina-titulo-novo{font-size:22px;font-weight:800;text-align:center;width:100%;margin-bottom:4px}
 .pisc-stats-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;width:100%}
 .pisc-stat-card{padding:14px 6px;text-align:center;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.08);border-radius:14px}
@@ -245,20 +244,17 @@ input,select{font-family:inherit;outline:none}
 .cal-celula.empty{visibility:hidden}
 .cal-celula.livre{background:rgba(16,185,129,0.12);color:#10b981;border-color:rgba(16,185,129,0.25)}
 .cal-celula.locado{background:#ef4444;color:#fff;border-color:#dc2626;box-shadow:0 2px 8px rgba(239,68,68,0.3)}
-.cal-celula.reservado{background:rgba(245,158,11,0.25);color:#fff;border-color:rgba(245,158,11,0.6);box-shadow:0 2px 8px rgba(245,158,11,0.2)}
 .cal-celula.feriado{background:rgba(168,85,247,0.18);color:#c084fc;border-color:rgba(168,85,247,0.4)}
 .cal-celula.feriado-locado{background:linear-gradient(135deg,#10b981,#a855f7);color:#fff;border-color:#fff;box-shadow:0 2px 8px rgba(168,85,247,0.3)}
-.cal-celula.feriado-reservado{background:linear-gradient(135deg,#f59e0b,#a855f7);color:#fff;border-color:#fff}
 .cal-celula.hoje{box-shadow:0 0 0 2px #8b5cf6,0 0 12px rgba(139,92,246,0.5)}
 .cal-celula.passado{opacity:0.4}
 .cal-celula .num{position:relative;z-index:2}
 .cal-celula .mini-icone{position:absolute;top:1px;right:2px;font-size:8px;line-height:1}
 .cal-legenda-nova{display:grid;grid-template-columns:1fr 1fr;gap:8px;width:100%;padding:14px;background:rgba(255,255,255,0.03);border-radius:14px;border:1px solid rgba(255,255,255,0.05)}
-.leg-item{display:flex;align-items:center;gap:8px;color:#d1d5db;font-size:11px;font-weight:500}
+.leg-item{display:flex;align-items:center;gap:8px;color:#d1d5db;font-size:12px;font-weight:500}
 .leg-cor{width:18px;height:18px;border-radius:5px;border:1.5px solid;flex-shrink:0}
 .leg-cor.livre{background:rgba(16,185,129,0.12);border-color:rgba(16,185,129,0.4)}
 .leg-cor.locado{background:#ef4444;border-color:#dc2626}
-.leg-cor.reservado{background:rgba(245,158,11,0.25);border-color:rgba(245,158,11,0.6)}
 .leg-cor.feriado{background:rgba(168,85,247,0.18);border-color:rgba(168,85,247,0.5)}
 .leg-cor.feriado-locado{background:linear-gradient(135deg,#10b981,#a855f7);border-color:#fff}
 .aviso-clique{padding:10px 14px;background:rgba(59,130,246,0.1);border:1px solid rgba(59,130,246,0.2);border-radius:12px;color:#60a5fa;font-size:12px;text-align:center;width:100%;font-weight:500}
@@ -267,17 +263,15 @@ input,select{font-family:inherit;outline:none}
 .loc-card:active{transform:scale(0.98)}
 .loc-cal{display:flex;flex-direction:column;align-items:center;justify-content:center;width:52px;height:56px;border-radius:12px;background:rgba(239,68,68,0.15);border:1.5px solid rgba(239,68,68,0.4);flex-shrink:0;overflow:hidden}
 .loc-cal.feriado{background:linear-gradient(135deg,rgba(16,185,129,0.2),rgba(168,85,247,0.2));border-color:rgba(168,85,247,0.5)}
-.loc-cal.reservado{background:rgba(245,158,11,0.2);border-color:rgba(245,158,11,0.5)}
 .loc-cal .mes-abv{font-size:9px;background:rgba(0,0,0,0.3);width:100%;text-align:center;padding:2px 0;color:#fcd34d;font-weight:700;text-transform:uppercase}
 .loc-cal .dia{font-size:20px;font-weight:900;color:#fff;flex:1;display:flex;align-items:center;justify-content:center}
 .loc-info-novo{flex:1;min-width:0}
 .loc-titulo-novo{font-size:14px;font-weight:700;color:#fff;display:flex;align-items:center;gap:5px}
 .loc-detalhe-novo{font-size:11px;color:#9ca3af;margin-top:3px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .loc-valor-novo{font-size:16px;font-weight:800;color:#10b981;flex-shrink:0}
-.loc-valor-novo.sem-valor{color:#f59e0b;font-size:12px}
 .sec-titulo-pisc{font-size:13px;color:#9ca3af;padding:6px 2px;font-weight:600;width:100%;display:flex;align-items:center;gap:6px}
-#modal,#modal-desc,#modal-piscina,#modal-loc-detalhe,#modal-dias,#modal-marcar{position:fixed;inset:0;z-index:100;background:rgba(0,0,0,0.75);display:none;align-items:flex-end;justify-content:center;padding:16px}
-#modal.aberto,#modal-desc.aberto,#modal-piscina.aberto,#modal-loc-detalhe.aberto,#modal-dias.aberto,#modal-marcar.aberto{display:flex}
+#modal,#modal-desc,#modal-piscina,#modal-loc-detalhe,#modal-dias,#modal-editar{position:fixed;inset:0;z-index:100;background:rgba(0,0,0,0.75);display:none;align-items:flex-end;justify-content:center;padding:16px}
+#modal.aberto,#modal-desc.aberto,#modal-piscina.aberto,#modal-loc-detalhe.aberto,#modal-dias.aberto,#modal-editar.aberto{display:flex}
 .modal-caixa{width:100%;max-width:440px;background:#111827;border:1px solid rgba(255,255,255,0.1);border-radius:28px;padding:24px;padding-bottom:max(24px,env(safe-area-inset-bottom));animation:subir 0.3s ease-out;max-height:85vh;overflow-y:auto}
 @keyframes subir{from{transform:translateY(80px);opacity:0}to{transform:translateY(0);opacity:1}}
 .modal-icone{font-size:40px;text-align:center;margin-bottom:6px}
@@ -299,8 +293,8 @@ input,select{font-family:inherit;outline:none}
 .btn-salvar{flex:2;padding:14px;border-radius:14px;background:#8b5cf6;color:#fff;font-size:14px;font-weight:700}
 .btn-salvar.modo-entrada{background:#10b981}
 .btn-salvar.modo-piscina{background:linear-gradient(135deg,#3b82f6,#06b6d4)}
-.btn-salvar.modo-reservar{background:linear-gradient(135deg,#f59e0b,#f97316)}
 .btn-salvar.modo-vermelho{background:#ef4444}
+.btn-salvar.modo-editar{background:linear-gradient(135deg,#f59e0b,#f97316)}
 .input-modal-full{width:100%;padding:12px 14px;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.12);border-radius:12px;color:#fff;font-size:15px;margin-bottom:12px}
 .label-modal{font-size:12px;color:#9ca3af;margin-bottom:6px;display:block;font-weight:600}
 .aviso-feriado{padding:12px;background:rgba(168,85,247,0.12);border:1px solid rgba(168,85,247,0.3);border-radius:12px;color:#c084fc;font-size:12px;margin-bottom:12px;text-align:center;font-weight:600}
@@ -310,9 +304,13 @@ input,select{font-family:inherit;outline:none}
 .opcao-dia.ativo{border-color:#8b5cf6;background:rgba(139,92,246,0.15)}
 .opcao-dia .num-big{font-size:30px;font-weight:900;margin-bottom:4px}
 .opcao-dia .lbl-big{font-size:12px;color:#9ca3af;font-weight:600}
-.datas-grid{display:flex;flex-direction:column;gap:10px;margin-bottom:14px}
 .data-input-row{display:flex;align-items:center;gap:8px}
 .data-input-row .lbl-data{font-size:12px;color:#9ca3af;font-weight:600;width:60px}
+.info-loc-box{padding:12px;background:rgba(255,255,255,0.04);border-radius:12px;margin-bottom:10px}
+.info-loc-lbl{font-size:11px;color:#9ca3af;margin-bottom:4px;text-transform:uppercase;font-weight:600}
+.info-loc-val{font-weight:700;font-size:14px}
+.info-loc-val.destaque{color:#10b981;font-size:18px}
+.info-loc-val.tel{color:#60a5fa}
 #toast{position:fixed;bottom:80px;left:50%;transform:translateX(-50%);background:#1f2937;border:1px solid rgba(255,255,255,0.1);border-radius:16px;padding:12px 20px;font-size:13px;color:#f1f5f9;white-space:nowrap;max-width:92vw;text-align:center;opacity:0;pointer-events:none;transition:opacity 0.3s;z-index:200;box-shadow:0 8px 32px rgba(0,0,0,0.5)}
 #toast.ver{opacity:1}
 </style>
@@ -426,8 +424,8 @@ input,select{font-family:inherit;outline:none}
 <div class="pisc-stats-3">
 <div class="pisc-stat-card">
 <span class="ico">📅</span>
-<div class="lbl">Reservadas</div>
-<div class="val amarelo" id="pisc-qtd">0</div>
+<div class="lbl">Locadas</div>
+<div class="val vermelho" id="pisc-qtd">0</div>
 </div>
 <div class="pisc-stat-card">
 <span class="ico">💰</span>
@@ -460,13 +458,13 @@ input,select{font-family:inherit;outline:none}
 <div class="cal-dias" id="cal-dias"></div>
 </div>
 
-<div class="aviso-clique">👆 Toque em qualquer dia para marcar/desmarcar</div>
+<div class="aviso-clique">👆 Toque em qualquer dia para locar</div>
 
 <div class="cal-legenda-nova">
 <div class="leg-item"><div class="leg-cor livre"></div>Livre</div>
-<div class="leg-item"><div class="leg-cor reservado"></div>Reservado</div>
-<div class="leg-item"><div class="leg-cor locado"></div>Locado (c/ valor)</div>
+<div class="leg-item"><div class="leg-cor locado"></div>Locado</div>
 <div class="leg-item"><div class="leg-cor feriado"></div>Feriado</div>
+<div class="leg-item"><div class="leg-cor feriado-locado"></div>Feriado+Locado</div>
 </div>
 
 <div class="sec-titulo-pisc">📋 Próximas locações</div>
@@ -570,7 +568,7 @@ input,select{font-family:inherit;outline:none}
 <div class="card" style="width:100%;padding:0;overflow:hidden">
 <div class="cfg-item" id="cfg-apagar"><div class="cfg-icone">🗑️</div><div class="cfg-info"><div class="cfg-label cfg-label-vermelho">Apagar tudo</div></div></div>
 </div>
-<p style="font-size:11px;color:#374151;text-align:center">v8.0 🏊</p>
+<p style="font-size:11px;color:#374151;text-align:center">v9.0 🏊</p>
 </div>
 
 </div>
@@ -619,7 +617,7 @@ input,select{font-family:inherit;outline:none}
 </div>
 </div>
 
-<!-- MODAL: ESCOLHER QUANTOS DIAS (1 ou 2) -->
+<!-- ESCOLHER QUANTOS DIAS -->
 <div id="modal-dias">
 <div class="modal-caixa">
 <div class="modal-icone">🏊</div>
@@ -642,16 +640,16 @@ input,select{font-family:inherit;outline:none}
 </div>
 </div>
 
-<!-- MODAL LOCAÇÃO COMPLETA (com horários) -->
+<!-- LOCAÇÃO COMPLETA (NOVA OU EDIÇÃO) -->
 <div id="modal-piscina">
 <div class="modal-caixa">
-<div class="modal-icone">🏊</div>
-<div class="modal-titulo" id="mp-titulo">Detalhes da Locação</div>
+<div class="modal-icone" id="mp-icone">🏊</div>
+<div class="modal-titulo" id="mp-titulo">Nova Locação</div>
 <div class="modal-orig" id="mp-orig">Preencha os dados</div>
 <div id="mp-aviso-feriado" class="aviso-feriado" style="display:none">🎉 FERIADO!</div>
 
 <div id="mp-area-data1">
-<label class="label-modal">📅 Data <span id="mp-lbl-data1">(1º dia)</span></label>
+<label class="label-modal">📅 Data <span id="mp-lbl-data1"></span></label>
 <input class="input-modal-full" id="mp-data" type="date">
 <div class="data-input-row" style="margin-bottom:12px">
 <span class="lbl-data">⏰ De:</span>
@@ -675,39 +673,32 @@ input,select{font-family:inherit;outline:none}
 <label class="label-modal">💰 Valor TOTAL (R$)</label>
 <input class="input-modal-full" id="mp-valor" type="number" step="0.01" min="0">
 
-<label class="label-modal">👤 Cliente (opcional)</label>
+<label class="label-modal">👤 Nome do cliente</label>
 <input class="input-modal-full" id="mp-cliente" type="text" placeholder="Ex: João Silva">
 
+<label class="label-modal">📱 Telefone/WhatsApp</label>
+<input class="input-modal-full" id="mp-tel" type="tel" placeholder="Ex: (11) 98765-4321">
+
 <label class="label-modal">📝 Observação (opcional)</label>
-<input class="input-modal-full" id="mp-obs" type="text" placeholder="Ex: aniversário">
+<input class="input-modal-full" id="mp-obs" type="text" placeholder="Ex: aniversário, 20 pessoas">
 
 <div class="modal-acoes">
 <button class="btn-cancelar" id="mp-cancelar">Cancelar</button>
-<button class="btn-salvar modo-piscina" id="mp-salvar">✓ Confirmar</button>
+<button class="btn-salvar modo-piscina" id="mp-salvar">✓ Salvar</button>
 </div>
 </div>
 </div>
 
-<!-- MODAL: MARCAR/DESMARCAR DIA (no calendário, sem valor) -->
-<div id="modal-marcar">
-<div class="modal-caixa">
-<div class="modal-icone" id="mm-ico">📅</div>
-<div class="modal-titulo" id="mm-titulo">Marcar dia</div>
-<div class="modal-orig" id="mm-data">...</div>
-<div id="mm-info" style="margin-bottom:18px"></div>
-<div class="modal-acoes" id="mm-acoes"></div>
-</div>
-</div>
-
-<!-- MODAL: DETALHES DE LOCAÇÃO EXISTENTE -->
+<!-- DETALHES DE LOCAÇÃO EXISTENTE (VER + EDITAR + APAGAR) -->
 <div id="modal-loc-detalhe">
 <div class="modal-caixa">
-<div class="modal-icone" id="mld-ico">📅</div>
-<div class="modal-titulo" id="mld-titulo">Dia</div>
+<div class="modal-icone" id="mld-ico">🏊</div>
+<div class="modal-titulo" id="mld-titulo">Locação</div>
 <div class="modal-orig" id="mld-orig">...</div>
 <div id="mld-conteudo"></div>
 <div class="modal-acoes">
-<button class="btn-cancelar" id="mld-fechar" style="width:100%;flex:1">Fechar</button>
+<button class="btn-cancelar" id="mld-fechar" style="flex:1">Fechar</button>
+<button class="btn-salvar modo-editar" id="mld-editar" style="flex:1">✏️ Editar</button>
 </div>
 </div>
 </div>
@@ -731,7 +722,7 @@ const db = getFirestore(app);
 window.FB = { db, collection, doc, setDoc, deleteDoc, onSnapshot, query, orderBy, writeBatch };
 window.firebaseOK = true;
 window.dispatchEvent(new Event('fb-ok'));
-console.log('✅ Firebase OK v8');
+console.log('✅ Firebase OK v9');
 </script>
 
 <script>
@@ -743,13 +734,16 @@ var D = {
   tipoModal:'saida', ouvindo:false,
   unsub:null, unsubContas:null, unsubReservas:null, unsubLoc:null,
   pendenteDesc:null, dataLocSelecionada:null,
-  valorPiscinaTemp:0, qtdDiasTemp:1
+  valorPiscinaTemp:0, qtdDiasTemp:1,
+  editandoLoc:null
 };
 
+// FERIADOS NACIONAIS BRASIL (2024-2027)
 var FERIADOS = {
-  '2024-01-01':'Confraternização','2024-02-12':'Carnaval','2024-02-13':'Carnaval','2024-03-29':'Sexta Santa','2024-04-21':'Tiradentes','2024-05-01':'Trabalho','2024-05-30':'Corpus Christi','2024-09-07':'Independência','2024-10-12':'N.S. Aparecida','2024-11-02':'Finados','2024-11-15':'Proclamação','2024-11-20':'Consciência Negra','2024-12-25':'Natal',
-  '2025-01-01':'Confraternização','2025-03-03':'Carnaval','2025-03-04':'Carnaval','2025-04-18':'Sexta Santa','2025-04-21':'Tiradentes','2025-05-01':'Trabalho','2025-06-19':'Corpus Christi','2025-09-07':'Independência','2025-10-12':'N.S. Aparecida','2025-11-02':'Finados','2025-11-15':'Proclamação','2025-11-20':'Consciência Negra','2025-12-25':'Natal',
-  '2026-01-01':'Confraternização','2026-02-16':'Carnaval','2026-02-17':'Carnaval','2026-04-03':'Sexta Santa','2026-04-21':'Tiradentes','2026-05-01':'Trabalho','2026-06-04':'Corpus Christi','2026-09-07':'Independência','2026-10-12':'N.S. Aparecida','2026-11-02':'Finados','2026-11-15':'Proclamação','2026-11-20':'Consciência Negra','2026-12-25':'Natal'
+  '2024-01-01':'Confraternização Universal','2024-02-12':'Carnaval','2024-02-13':'Carnaval','2024-03-29':'Sexta-feira Santa','2024-04-21':'Tiradentes','2024-05-01':'Dia do Trabalho','2024-05-30':'Corpus Christi','2024-09-07':'Independência','2024-10-12':'N. Sra. Aparecida','2024-11-02':'Finados','2024-11-15':'Proclamação República','2024-11-20':'Consciência Negra','2024-12-25':'Natal',
+  '2025-01-01':'Confraternização Universal','2025-03-03':'Carnaval','2025-03-04':'Carnaval','2025-04-18':'Sexta-feira Santa','2025-04-21':'Tiradentes','2025-05-01':'Dia do Trabalho','2025-06-19':'Corpus Christi','2025-09-07':'Independência','2025-10-12':'N. Sra. Aparecida','2025-11-02':'Finados','2025-11-15':'Proclamação República','2025-11-20':'Consciência Negra','2025-12-25':'Natal',
+  '2026-01-01':'Confraternização Universal','2026-02-16':'Carnaval','2026-02-17':'Carnaval','2026-04-03':'Sexta-feira Santa','2026-04-21':'Tiradentes','2026-05-01':'Dia do Trabalho','2026-06-04':'Corpus Christi','2026-09-07':'Independência','2026-10-12':'N. Sra. Aparecida','2026-11-02':'Finados','2026-11-15':'Proclamação República','2026-11-20':'Consciência Negra','2026-12-25':'Natal',
+  '2027-01-01':'Confraternização Universal','2027-02-08':'Carnaval','2027-02-09':'Carnaval','2027-03-26':'Sexta-feira Santa','2027-04-21':'Tiradentes','2027-05-01':'Dia do Trabalho','2027-05-27':'Corpus Christi','2027-09-07':'Independência','2027-10-12':'N. Sra. Aparecida','2027-11-02':'Finados','2027-11-15':'Proclamação República','2027-11-20':'Consciência Negra','2027-12-25':'Natal'
 };
 
 var FONTES_RENDA = [
@@ -774,8 +768,7 @@ var CATS = [
   {id:'lazer',nome:'Lazer',icone:'🎉',tipo:'saida',p:['cinema','passeio','bar','balada']},
   {id:'saude',nome:'Saúde',icone:'🏥',tipo:'saida',p:['saúde','saude','médico','medico','remédio','remedio','farmácia','farmacia','hospital','consulta','dentista']},
   {id:'transporte',nome:'Transporte',icone:'🚗',tipo:'saida',p:['uber','ônibus','onibus','mecânico','mecanico','oficina','pneu']},
-  {id:'luz',nome:'Energia',icone:'💡',tipo:'saida',p:['luz','energia','elétrica','eletrica','cpfl','enel']},
-  {id:'iq_perda',nome:'IQ Options',icone:'📉',tipo:'saida',p:['iq','iqoptions','iq options','opções','opcoes','trade','perdi trade']}
+  {id:'luz',nome:'Energia',icone:'💡',tipo:'saida',p:['luz','energia','elétrica','eletrica','cpfl','enel']}
 ];
 
 var PSAI = ['gastei','gasto','paguei','pago','comprei','compra','saída','saida','tirei','retirei','custou','custa','perdi'];
@@ -794,8 +787,8 @@ function ehPiscina(texto){var n=N(texto);return n.indexOf('piscina')!==-1}
 
 function parse(t){var tp=detTipo(t),v=exVal(t),c=achaCat(t,tp);var dono=detectarDono(t,c?c.nome:'');var piscina=ehPiscina(t)&&tp==='entrada';if(c)return{tipo:tp,valor:v,categoria:c.nome,icone:c.icone,txt:t,dono:dono,precisaDesc:false,ehPiscina:piscina};var palavra=extrairPalavraChave(t);if(palavra&&palavra.length>2){var emoji=getEmojiAuto(palavra)||(tp==='entrada'?'💰':'💸');var nomeCat=palavra.charAt(0).toUpperCase()+palavra.slice(1);return{tipo:tp,valor:v,categoria:nomeCat,icone:emoji,txt:t,dono:dono,precisaDesc:false,ehPiscina:false}}return{tipo:tp,valor:v,categoria:'',icone:'❓',txt:t,dono:null,precisaDesc:true,ehPiscina:false}}
 
-function salvarCfg(){try{localStorage.setItem('cf8_nome',D.nome);localStorage.setItem('cf8_cod',D.cod);localStorage.setItem('cf8_rap',D.rapido?'1':'0');localStorage.setItem('cf8_vib',D.vib?'1':'0');localStorage.setItem('cf8_som',D.som?'1':'0');localStorage.setItem('cf8_login','1')}catch(e){}}
-function carregarCfg(){try{D.nome=localStorage.getItem('cf8_nome')||localStorage.getItem('cf7_nome')||localStorage.getItem('cf6_nome')||'';D.cod=localStorage.getItem('cf8_cod')||localStorage.getItem('cf7_cod')||localStorage.getItem('cf6_cod')||'';D.rapido=(localStorage.getItem('cf8_rap')||localStorage.getItem('cf7_rap'))==='1';D.vib=(localStorage.getItem('cf8_vib')||localStorage.getItem('cf7_vib'))!=='0';D.som=(localStorage.getItem('cf8_som')||localStorage.getItem('cf7_som'))!=='0'}catch(e){}}
+function salvarCfg(){try{localStorage.setItem('cf9_nome',D.nome);localStorage.setItem('cf9_cod',D.cod);localStorage.setItem('cf9_rap',D.rapido?'1':'0');localStorage.setItem('cf9_vib',D.vib?'1':'0');localStorage.setItem('cf9_som',D.som?'1':'0');localStorage.setItem('cf9_login','1')}catch(e){}}
+function carregarCfg(){try{D.nome=localStorage.getItem('cf9_nome')||localStorage.getItem('cf8_nome')||localStorage.getItem('cf7_nome')||'';D.cod=localStorage.getItem('cf9_cod')||localStorage.getItem('cf8_cod')||localStorage.getItem('cf7_cod')||'';D.rapido=(localStorage.getItem('cf9_rap')||localStorage.getItem('cf8_rap'))==='1';D.vib=(localStorage.getItem('cf9_vib')||localStorage.getItem('cf8_vib'))!=='0';D.som=(localStorage.getItem('cf9_som')||localStorage.getItem('cf8_som'))!=='0'}catch(e){}}
 function gerarCod(){var c='ABCDEFGHJKLMNPQRSTUVWXYZ23456789',r='';for(var i=0;i<6;i++)r+=c[Math.floor(Math.random()*c.length)];return r}
 
 function criarNovo(){var n=prompt('Seu nome:');if(!n)return;D.nome=n.trim();D.cod=gerarCod();salvarCfg();entrarApp()}
@@ -806,7 +799,7 @@ function entrarApp(){document.getElementById('tela-login').classList.remove('ati
 function sair(){if(!confirm('Sair?'))return;if(D.unsub)D.unsub();if(D.unsubContas)D.unsubContas();if(D.unsubReservas)D.unsubReservas();if(D.unsubLoc)D.unsubLoc();document.getElementById('tela-app').classList.remove('ativa');document.getElementById('tela-login').classList.add('ativa')}
 function iniciar(){atualizarHeader();atualizarCfg();renderTudo();aplicarRapido()}
 
-function conectarFB(){if(!window.firebaseOK||!D.cod)return;var F=window.FB;try{var q1=F.query(F.collection(F.db,'casais',D.cod,'transacoes'),F.orderBy('criadoEm','desc'));D.unsub=F.onSnapshot(q1,function(s){D.txs=[];s.forEach(function(d){var x=d.data();D.txs.push({id:d.id,tipo:x.tipo,valor:x.valor,categoria:x.categoria,icone:x.icone,txt:x.textoOriginal||x.txt||'',criadoEm:x.criadoEm,usuario:x.usuario||'?',dono:x.dono||null})});renderTudo()});var q2=F.query(F.collection(F.db,'casais',D.cod,'contas'),F.orderBy('vencimento','asc'));D.unsubContas=F.onSnapshot(q2,function(s){D.contas=[];s.forEach(function(d){var x=d.data();D.contas.push({id:d.id,nome:x.nome,valor:x.valor,vencimento:x.vencimento,paga:x.paga||false})});renderContas();renderAlertas();renderInicio()});var q3=F.query(F.collection(F.db,'casais',D.cod,'reservas'),F.orderBy('data','desc'));D.unsubReservas=F.onSnapshot(q3,function(s){D.reservas=[];s.forEach(function(d){var x=d.data();D.reservas.push({id:d.id,valor:x.valor,tipo:x.tipo,data:x.data,usuario:x.usuario||'?'})});renderReserva();renderInicio()});var q4=F.query(F.collection(F.db,'casais',D.cod,'locacoes'),F.orderBy('data','asc'));D.unsubLoc=F.onSnapshot(q4,function(s){D.locacoes=[];s.forEach(function(d){var x=d.data();D.locacoes.push({id:d.id,data:x.data,valor:x.valor||0,cliente:x.cliente||'',obs:x.obs||'',horaIni:x.horaIni||'',horaFim:x.horaFim||'',grupo:x.grupo||null,txId:x.txId||null,reservaSimples:x.reservaSimples||false,usuario:x.usuario||'?'})});renderPiscina()})}catch(e){console.error(e);toast('❌ Erro conexão')}}
+function conectarFB(){if(!window.firebaseOK||!D.cod)return;var F=window.FB;try{var q1=F.query(F.collection(F.db,'casais',D.cod,'transacoes'),F.orderBy('criadoEm','desc'));D.unsub=F.onSnapshot(q1,function(s){D.txs=[];s.forEach(function(d){var x=d.data();D.txs.push({id:d.id,tipo:x.tipo,valor:x.valor,categoria:x.categoria,icone:x.icone,txt:x.textoOriginal||x.txt||'',criadoEm:x.criadoEm,usuario:x.usuario||'?',dono:x.dono||null})});renderTudo()});var q2=F.query(F.collection(F.db,'casais',D.cod,'contas'),F.orderBy('vencimento','asc'));D.unsubContas=F.onSnapshot(q2,function(s){D.contas=[];s.forEach(function(d){var x=d.data();D.contas.push({id:d.id,nome:x.nome,valor:x.valor,vencimento:x.vencimento,paga:x.paga||false})});renderContas();renderAlertas();renderInicio()});var q3=F.query(F.collection(F.db,'casais',D.cod,'reservas'),F.orderBy('data','desc'));D.unsubReservas=F.onSnapshot(q3,function(s){D.reservas=[];s.forEach(function(d){var x=d.data();D.reservas.push({id:d.id,valor:x.valor,tipo:x.tipo,data:x.data,usuario:x.usuario||'?'})});renderReserva();renderInicio()});var q4=F.query(F.collection(F.db,'casais',D.cod,'locacoes'),F.orderBy('data','asc'));D.unsubLoc=F.onSnapshot(q4,function(s){D.locacoes=[];s.forEach(function(d){var x=d.data();D.locacoes.push({id:d.id,data:x.data,valor:x.valor||0,cliente:x.cliente||'',telefone:x.telefone||'',obs:x.obs||'',horaIni:x.horaIni||'',horaFim:x.horaFim||'',grupo:x.grupo||null,txId:x.txId||null,usuario:x.usuario||'?'})});renderPiscina()})}catch(e){console.error(e);toast('❌ Erro conexão')}}
 
 function atualizarHeader(){var m=D.mes,nm=m.toLocaleDateString('pt-BR',{month:'long',year:'numeric'});nm=nm.charAt(0).toUpperCase()+nm.slice(1);document.getElementById('label-mes').textContent=nm;document.getElementById('h-sub').textContent=nm+' • '+D.nome+' • '+D.cod}
 function txMes(d){var dt=d||D.mes,m=dt.getMonth(),a=dt.getFullYear();return D.txs.filter(function(t){var x=new Date(t.criadoEm);return x.getMonth()===m&&x.getFullYear()===a})}
@@ -826,9 +819,9 @@ function renderFontes(){var t=txMes(),html='',rankings={Neny:0,'Laís':0,Ambos:0
 // ===== PISCINA =====
 function ehFeriado(d){return!!FERIADOS[d]}
 function nomeFeriado(d){return FERIADOS[d]||''}
-function ehDataLocada(d){return D.locacoes.some(function(l){return l.data===d})}
 function getLocacao(d){return D.locacoes.find(function(l){return l.data===d})}
 function fmtDataBR(d){var p=d.split('-');return p[2]+'/'+p[1]+'/'+p[0]}
+function fmtDataExtenso(d){var p=d.split('-');var data=new Date(parseInt(p[0]),parseInt(p[1])-1,parseInt(p[2]));return data.toLocaleDateString('pt-BR',{weekday:'long',day:'2-digit',month:'long',year:'numeric'})}
 
 function renderPiscina(){
   var mes=D.calMes,m=mes.getMonth(),a=mes.getFullYear();
@@ -852,7 +845,6 @@ function renderPiscina(){
   var hojeStr=hoje.getFullYear()+'-'+String(hoje.getMonth()+1).padStart(2,'0')+'-'+String(hoje.getDate()).padStart(2,'0');
 
   var html='';
-
   for(var i=0;i<diaSem;i++)html+='<div class="cal-celula empty"></div>';
 
   for(var d=1;d<=totalDias;d++){
@@ -862,17 +854,10 @@ function renderPiscina(){
     var cls='cal-celula';
     var mini='';
 
-    if(loc&&fer){
-      if(loc.reservaSimples){cls+=' feriado-reservado';mini='<div class="mini-icone">📍</div>'}
-      else{cls+=' feriado-locado';mini='<div class="mini-icone">💰</div>'}
-    } else if(loc){
-      if(loc.reservaSimples){cls+=' reservado';mini='<div class="mini-icone">📍</div>'}
-      else{cls+=' locado';mini='<div class="mini-icone">💰</div>'}
-    } else if(fer){
-      cls+=' feriado';mini='<div class="mini-icone">🎉</div>';
-    } else {
-      cls+=' livre';
-    }
+    if(loc&&fer){cls+=' feriado-locado';mini='<div class="mini-icone">🎉</div>'}
+    else if(loc){cls+=' locado';mini='<div class="mini-icone">🔒</div>'}
+    else if(fer){cls+=' feriado';mini='<div class="mini-icone">🎉</div>'}
+    else cls+=' livre';
 
     if(dataStr===hojeStr)cls+=' hoje';
     if(dataStr<hojeStr&&!loc)cls+=' passado';
@@ -883,39 +868,35 @@ function renderPiscina(){
   var grid=document.getElementById('cal-dias');
   if(grid)grid.innerHTML=html;
 
-  // Lista
+  // Lista futuras
   var futuras=D.locacoes.filter(function(l){return l.data>=hojeStr}).sort(function(a,b){return a.data.localeCompare(b.data)}).slice(0,10);
   var lh='';
   if(futuras.length===0){
-    lh='<div class="vazio" style="padding:24px;background:rgba(255,255,255,0.03);border-radius:14px"><span class="vazio-emoji">📅</span>Nenhuma locação futura<br><span style="font-size:12px">Toque num dia para marcar</span></div>';
+    lh='<div class="vazio" style="padding:24px;background:rgba(255,255,255,0.03);border-radius:14px"><span class="vazio-emoji">📅</span>Nenhuma locação futura<br><span style="font-size:12px">Toque num dia para locar</span></div>';
   } else {
     futuras.forEach(function(l){
       var p=l.data.split('-');
       var dia=p[2];
       var mesAbv=['JAN','FEV','MAR','ABR','MAI','JUN','JUL','AGO','SET','OUT','NOV','DEZ'][parseInt(p[1])-1];
       var fer=ehFeriado(l.data);
-      var classDt=fer?'feriado':(l.reservaSimples?'reservado':'');
-      var horario=l.horaIni&&l.horaFim?l.horaIni+'-'+l.horaFim+'h':'';
+      var horario=l.horaIni&&l.horaFim?l.horaIni+'-'+l.horaFim:'';
       var detalhes=[];
       if(fer)detalhes.push('⭐ '+nomeFeriado(l.data));
       else detalhes.push(fmtDataBR(l.data));
       if(horario)detalhes.push(horario);
+      if(l.telefone)detalhes.push('📱 '+l.telefone);
       if(l.obs)detalhes.push(l.obs);
 
       lh+='<div class="loc-card" data-loc="'+l.id+'">';
-      lh+='<div class="loc-cal '+classDt+'">';
+      lh+='<div class="loc-cal '+(fer?'feriado':'')+'">';
       lh+='<div class="mes-abv">'+mesAbv+'</div>';
       lh+='<div class="dia">'+dia+'</div>';
       lh+='</div>';
       lh+='<div class="loc-info-novo">';
-      lh+='<div class="loc-titulo-novo">'+(l.cliente||(l.reservaSimples?'Reserva (sem valor)':'Locação'))+(fer?' 🎉':'')+'</div>';
+      lh+='<div class="loc-titulo-novo">'+(l.cliente||'Locação')+(fer?' 🎉':'')+'</div>';
       lh+='<div class="loc-detalhe-novo">'+detalhes.join(' • ')+'</div>';
       lh+='</div>';
-      if(l.reservaSimples||!l.valor){
-        lh+='<div class="loc-valor-novo sem-valor">📍 Reserva</div>';
-      } else {
-        lh+='<div class="loc-valor-novo">'+fmt(l.valor)+'</div>';
-      }
+      lh+='<div class="loc-valor-novo">'+(l.valor>0?fmt(l.valor):'-')+'</div>';
       lh+='</div>';
     });
   }
@@ -923,71 +904,20 @@ function renderPiscina(){
   if(le)le.innerHTML=lh;
 }
 
-// CLIQUE EM DIA DO CALENDÁRIO (sem valor - só reserva)
+// CLIQUE EM DIA
 function clickDiaCalendario(dataStr){
   var loc=getLocacao(dataStr);
-  var fer=ehFeriado(dataStr);
-  var modal=document.getElementById('modal-marcar');
-  var ico=document.getElementById('mm-ico');
-  var tit=document.getElementById('mm-titulo');
-  var dataEl=document.getElementById('mm-data');
-  var info=document.getElementById('mm-info');
-  var acoes=document.getElementById('mm-acoes');
-
-  D.dataLocSelecionada=dataStr;
-  dataEl.textContent=fmtDataBR(dataStr);
-
   if(loc){
-    // Já tem locação - mostra opções
-    if(loc.reservaSimples){
-      ico.textContent='📍';
-      tit.textContent='Dia Reservado';
-      var html='<div style="padding:14px;background:rgba(245,158,11,0.1);border:1px solid rgba(245,158,11,0.3);border-radius:12px;text-align:center;color:#fcd34d;font-weight:600">📍 Reservado sem valor<br><span style="font-size:11px;font-weight:400">Data bloqueada</span></div>';
-      if(fer)html+='<div class="aviso-feriado" style="margin-top:10px">🎉 '+nomeFeriado(dataStr)+'</div>';
-      info.innerHTML=html;
-      acoes.innerHTML='<button class="btn-cancelar" id="mm-fechar" style="flex:1">Fechar</button><button class="btn-salvar modo-vermelho" id="mm-remover" style="flex:1">🗑️ Desmarcar</button>';
-    } else {
-      // Locação com valor - vai para detalhes
-      modal.classList.remove('aberto');
-      mostrarDetalheLocacao(loc);
-      return;
-    }
+    // Já tem locação - mostra detalhes com opção de editar
+    mostrarDetalheLocacao(loc);
   } else {
-    // Dia livre - opções de marcar
-    ico.textContent=fer?'🎉':'✅';
-    tit.textContent=fer?'Feriado Disponível':'Dia Disponível';
-    var html='';
-    if(fer)html+='<div class="aviso-feriado">🎉 '+nomeFeriado(dataStr)+'</div>';
-    html+='<div style="padding:14px;background:rgba(16,185,129,0.08);border:1px solid rgba(16,185,129,0.2);border-radius:12px;text-align:center;color:#10b981;font-weight:600;margin-bottom:10px">✅ Livre para reservar</div>';
-    html+='<p style="font-size:12px;color:#9ca3af;text-align:center">Escolha uma opção:</p>';
-    info.innerHTML=html;
-    acoes.innerHTML='<button class="btn-cancelar" id="mm-fechar" style="flex:1">Cancelar</button><button class="btn-salvar modo-reservar" id="mm-reservar" style="flex:1">📍 Reservar</button>';
+    // Dia livre - abre modal de nova locação diretamente
+    abrirModalNovaLocacao(dataStr);
   }
-
-  modal.classList.add('aberto');
-
-  // Adicionar listeners
-  var btnFechar=document.getElementById('mm-fechar');
-  if(btnFechar)btnFechar.onclick=function(){modal.classList.remove('aberto')};
-
-  var btnReservar=document.getElementById('mm-reservar');
-  if(btnReservar)btnReservar.onclick=function(){
-    reservarDiaSimples(dataStr);
-    modal.classList.remove('aberto');
-  };
-
-  var btnRemover=document.getElementById('mm-remover');
-  if(btnRemover)btnRemover.onclick=function(){
-    if(loc&&confirm('Desmarcar este dia?')){
-      window.FB.deleteDoc(window.FB.doc(window.FB.db,'casais',D.cod,'locacoes',loc.id));
-      modal.classList.remove('aberto');
-      toast('✅ Dia liberado');
-      vibrar();
-    }
-  };
 }
 
 function mostrarDetalheLocacao(loc){
+  D.editandoLoc=loc;
   var modal=document.getElementById('modal-loc-detalhe');
   var ico=document.getElementById('mld-ico');
   var tit=document.getElementById('mld-titulo');
@@ -995,37 +925,90 @@ function mostrarDetalheLocacao(loc){
   var cont=document.getElementById('mld-conteudo');
   var fer=ehFeriado(loc.data);
 
-  ico.textContent='💰';
-  tit.textContent='Locação Confirmada';
-  orig.textContent=fmtDataBR(loc.data);
+  ico.textContent=fer?'🎉':'🏊';
+  tit.textContent='Locação';
+  orig.textContent=fmtDataExtenso(loc.data);
 
   var html='';
-  if(loc.cliente)html+='<div style="padding:14px;background:rgba(255,255,255,0.04);border-radius:12px;margin-bottom:10px"><div style="font-size:11px;color:#9ca3af;margin-bottom:4px">CLIENTE</div><div style="font-weight:700">'+loc.cliente+'</div></div>';
-  html+='<div style="padding:14px;background:rgba(16,185,129,0.1);border:1px solid rgba(16,185,129,0.3);border-radius:12px;margin-bottom:10px"><div style="font-size:11px;color:#9ca3af;margin-bottom:4px">VALOR</div><div style="font-weight:700;color:#10b981;font-size:18px">'+fmt(loc.valor||0)+'</div></div>';
-  if(loc.horaIni&&loc.horaFim)html+='<div style="padding:14px;background:rgba(59,130,246,0.1);border:1px solid rgba(59,130,246,0.3);border-radius:12px;margin-bottom:10px"><div style="font-size:11px;color:#9ca3af;margin-bottom:4px">HORÁRIO</div><div style="font-weight:700;color:#60a5fa">⏰ '+loc.horaIni+' às '+loc.horaFim+'</div></div>';
-  if(loc.obs)html+='<div style="padding:14px;background:rgba(255,255,255,0.04);border-radius:12px;margin-bottom:10px"><div style="font-size:11px;color:#9ca3af;margin-bottom:4px">OBSERVAÇÃO</div><div>'+loc.obs+'</div></div>';
   if(fer)html+='<div class="aviso-feriado">🎉 '+nomeFeriado(loc.data)+'</div>';
-  if(loc.grupo)html+='<div style="padding:10px;background:rgba(139,92,246,0.1);border:1px solid rgba(139,92,246,0.3);border-radius:10px;text-align:center;color:#a78bfa;font-size:11px;margin-bottom:10px">🔗 Parte de uma locação de múltiplos dias</div>';
-  html+='<button class="btn-cancelar" style="width:100%;margin-top:10px;color:#ef4444" onclick="removerLocacao(\''+loc.id+'\','+(loc.grupo?'true':'false')+',\''+(loc.grupo||'')+'\')">🗑️ Remover</button>';
+
+  if(loc.cliente){
+    html+='<div class="info-loc-box"><div class="info-loc-lbl">👤 Cliente</div><div class="info-loc-val">'+loc.cliente+'</div></div>';
+  }
+
+  if(loc.telefone){
+    html+='<div class="info-loc-box"><div class="info-loc-lbl">📱 Telefone</div><div class="info-loc-val tel"><a href="tel:'+loc.telefone.replace(/\D/g,'')+'" style="color:#60a5fa;text-decoration:none">'+loc.telefone+'</a> <a href="https://wa.me/55'+loc.telefone.replace(/\D/g,'')+'" target="_blank" style="color:#10b981;text-decoration:none;margin-left:8px">💬 WhatsApp</a></div></div>';
+  }
+
+  if(loc.horaIni&&loc.horaFim){
+    html+='<div class="info-loc-box"><div class="info-loc-lbl">⏰ Horário</div><div class="info-loc-val">'+loc.horaIni+' às '+loc.horaFim+'</div></div>';
+  }
+
+  if(loc.valor>0){
+    html+='<div class="info-loc-box"><div class="info-loc-lbl">💰 Valor</div><div class="info-loc-val destaque">'+fmt(loc.valor)+'</div></div>';
+  }
+
+  if(loc.obs){
+    html+='<div class="info-loc-box"><div class="info-loc-lbl">📝 Observação</div><div class="info-loc-val">'+loc.obs+'</div></div>';
+  }
+
+  if(loc.grupo){
+    html+='<div style="padding:10px;background:rgba(139,92,246,0.1);border:1px solid rgba(139,92,246,0.3);border-radius:10px;text-align:center;color:#a78bfa;font-size:11px;margin-bottom:10px">🔗 Parte de locação de 2 dias</div>';
+  }
+
+  html+='<button class="btn-cancelar" style="width:100%;margin-top:10px;color:#ef4444;background:rgba(239,68,68,0.1);border-color:rgba(239,68,68,0.3)" onclick="removerLocacao(\''+loc.id+'\','+(loc.grupo?'true':'false')+',\''+(loc.grupo||'')+'\')">🗑️ Apagar locação</button>';
+
   cont.innerHTML=html;
   modal.classList.add('aberto');
 }
 
-// RESERVAR DIA SIMPLES (sem valor)
-function reservarDiaSimples(dataStr){
-  if(!window.firebaseOK)return;
-  var id='loc'+Date.now()+Math.random().toString(36).substr(2,4);
-  window.FB.setDoc(window.FB.doc(window.FB.db,'casais',D.cod,'locacoes',id),{
-    data:dataStr,valor:0,cliente:'',obs:'',horaIni:'',horaFim:'',
-    reservaSimples:true,usuario:D.nome
-  });
-  toast('📍 Dia reservado: '+fmtDataBR(dataStr));
-  vibrar();
+// ABRIR MODAL NOVA LOCAÇÃO (do calendário)
+function abrirModalNovaLocacao(dataStr){
+  D.editandoLoc=null;
+  D.qtdDiasTemp=1;
+  D.valorPiscinaTemp=0;
+
+  document.getElementById('mp-icone').textContent='🏊';
+  document.getElementById('mp-titulo').textContent='Nova Locação';
+  document.getElementById('mp-orig').textContent='Preencha os dados';
+  document.getElementById('mp-lbl-data1').textContent='';
+  document.getElementById('mp-area-data2').style.display='none';
+  document.getElementById('mp-data').value=dataStr;
+  document.getElementById('mp-valor').value='';
+  document.getElementById('mp-cliente').value='';
+  document.getElementById('mp-tel').value='';
+  document.getElementById('mp-obs').value='';
+  document.getElementById('mp-hora-ini').value='14:00';
+  document.getElementById('mp-hora-fim').value='22:00';
+  verificarFeriadoModal();
+  document.getElementById('modal-piscina').classList.add('aberto');
 }
 
-// QUANDO FALA "PISCINA" NO INÍCIO - MOSTRA OPÇÕES DE DIAS
+// ABRIR MODAL EDIÇÃO
+function abrirModalEdicao(loc){
+  D.editandoLoc=loc;
+  D.qtdDiasTemp=1;
+
+  document.getElementById('mp-icone').textContent='✏️';
+  document.getElementById('mp-titulo').textContent='Editar Locação';
+  document.getElementById('mp-orig').textContent=fmtDataExtenso(loc.data);
+  document.getElementById('mp-lbl-data1').textContent='';
+  document.getElementById('mp-area-data2').style.display='none';
+  document.getElementById('mp-data').value=loc.data;
+  document.getElementById('mp-valor').value=loc.valor>0?loc.valor.toFixed(2):'';
+  document.getElementById('mp-cliente').value=loc.cliente||'';
+  document.getElementById('mp-tel').value=loc.telefone||'';
+  document.getElementById('mp-obs').value=loc.obs||'';
+  document.getElementById('mp-hora-ini').value=loc.horaIni||'14:00';
+  document.getElementById('mp-hora-fim').value=loc.horaFim||'22:00';
+  verificarFeriadoModal();
+  document.getElementById('modal-piscina').classList.add('aberto');
+}
+
+// FALA "PISCINA" NO INÍCIO
 function iniciarLocacaoPiscina(valor){
   D.valorPiscinaTemp=valor;
+  D.editandoLoc=null;
   document.getElementById('mdia-valor').textContent='Valor: '+fmt(valor);
   document.getElementById('op-1-dia').classList.remove('ativo');
   document.getElementById('op-2-dias').classList.remove('ativo');
@@ -1035,18 +1018,21 @@ function iniciarLocacaoPiscina(valor){
 function selecionarQtdDias(qtd){
   D.qtdDiasTemp=qtd;
   document.getElementById('modal-dias').classList.remove('aberto');
-  abrirModalPiscinaCompleto(qtd, D.valorPiscinaTemp);
+  abrirModalCompletoDaVoz(qtd,D.valorPiscinaTemp);
 }
 
-function abrirModalPiscinaCompleto(qtd, valor){
+function abrirModalCompletoDaVoz(qtd,valor){
+  D.editandoLoc=null;
   var hoje=new Date();
   var hojeStr=hoje.getFullYear()+'-'+String(hoje.getMonth()+1).padStart(2,'0')+'-'+String(hoje.getDate()).padStart(2,'0');
 
-  document.getElementById('mp-titulo').textContent=qtd===2?'Locação - 2 Dias':'Locação - 1 Dia';
-  document.getElementById('mp-orig').textContent='Preencha os horários e dados';
+  document.getElementById('mp-icone').textContent='🏊';
+  document.getElementById('mp-titulo').textContent=qtd===2?'Locação - 2 Dias':'Nova Locação';
+  document.getElementById('mp-orig').textContent='Preencha os dados';
   document.getElementById('mp-data').value=hojeStr;
   document.getElementById('mp-valor').value=valor>0?valor.toFixed(2):'';
   document.getElementById('mp-cliente').value='';
+  document.getElementById('mp-tel').value='';
   document.getElementById('mp-obs').value='';
   document.getElementById('mp-hora-ini').value='14:00';
   document.getElementById('mp-hora-fim').value='22:00';
@@ -1083,9 +1069,39 @@ function salvarLocacao(){
   var data=document.getElementById('mp-data').value;
   var valor=parseFloat(document.getElementById('mp-valor').value)||0;
   var cliente=document.getElementById('mp-cliente').value.trim();
+  var telefone=document.getElementById('mp-tel').value.trim();
   var obs=document.getElementById('mp-obs').value.trim();
   var horaIni=document.getElementById('mp-hora-ini').value;
   var horaFim=document.getElementById('mp-hora-fim').value;
+
+  if(!data){toast('❌ Escolha a data');return}
+  if(!window.firebaseOK)return;
+
+  // MODO EDIÇÃO
+  if(D.editandoLoc){
+    var atualizacao={
+      data:data,valor:valor,cliente:cliente,telefone:telefone,
+      obs:obs,horaIni:horaIni,horaFim:horaFim
+    };
+    window.FB.setDoc(window.FB.doc(window.FB.db,'casais',D.cod,'locacoes',D.editandoLoc.id),atualizacao,{merge:true});
+
+    // Se tem txId, atualiza a transação também
+    if(D.editandoLoc.txId&&valor>0){
+      var textoTx='Locação piscina '+fmtDataBR(data)+(cliente?' - '+cliente:'');
+      window.FB.setDoc(window.FB.doc(window.FB.db,'casais',D.cod,'transacoes',D.editandoLoc.txId),{
+        valor:valor,textoOriginal:textoTx
+      },{merge:true});
+    }
+
+    document.getElementById('modal-piscina').classList.remove('aberto');
+    document.getElementById('modal-loc-detalhe').classList.remove('aberto');
+    beep();vibrar([30,40,30]);
+    toast('✅ Editado com sucesso!');
+    D.editandoLoc=null;
+    return;
+  }
+
+  // MODO NOVO
   var qtd=D.qtdDiasTemp;
   var data2='',horaIni2='',horaFim2='';
 
@@ -1096,64 +1112,57 @@ function salvarLocacao(){
     if(!data2){toast('❌ Escolha a 2ª data');return}
   }
 
-  if(!data){toast('❌ Escolha a data');return}
-  if(valor<=0){toast('❌ Valor inválido');return}
-  if(!window.firebaseOK)return;
-
   // Verifica conflitos
   var datas=[data];if(qtd===2)datas.push(data2);
   for(var i=0;i<datas.length;i++){
     var locExistente=getLocacao(datas[i]);
-    if(locExistente&&!locExistente.reservaSimples){
-      if(!confirm('Dia '+fmtDataBR(datas[i])+' já tem locação. Substituir?'))return;
-      window.FB.deleteDoc(window.FB.doc(window.FB.db,'casais',D.cod,'locacoes',locExistente.id));
-    } else if(locExistente&&locExistente.reservaSimples){
-      // Remove reserva simples antes
+    if(locExistente){
+      if(!confirm('Dia '+fmtDataBR(datas[i])+' já está locado. Substituir?'))return;
+      if(locExistente.txId)window.FB.deleteDoc(window.FB.doc(window.FB.db,'casais',D.cod,'transacoes',locExistente.txId));
       window.FB.deleteDoc(window.FB.doc(window.FB.db,'casais',D.cod,'locacoes',locExistente.id));
     }
   }
 
   var grupoId=qtd===2?'g'+Date.now()+Math.random().toString(36).substr(2,4):null;
   var valorCada=qtd===2?valor/2:valor;
+  var txId=null;
+
+  // Cria transação financeira SÓ se tiver valor
+  if(valor>0){
+    txId='tx'+Date.now()+Math.random().toString(36).substr(2,4);
+    var textoTx=qtd===2?'Locação piscina '+fmtDataBR(data)+' e '+fmtDataBR(data2)+(cliente?' - '+cliente:''):'Locação piscina '+fmtDataBR(data)+(cliente?' - '+cliente:'');
+    window.FB.setDoc(window.FB.doc(window.FB.db,'casais',D.cod,'transacoes',txId),{
+      tipo:'entrada',valor:valor,categoria:'Piscina',icone:'🏊',
+      textoOriginal:textoTx,criadoEm:new Date().toISOString(),usuario:D.nome,dono:'Ambos'
+    });
+  }
 
   // 1ª locação
   var id1='loc'+Date.now()+Math.random().toString(36).substr(2,4);
-  var txId='tx'+Date.now()+Math.random().toString(36).substr(2,4);
-
-  // Cria UMA transação financeira pelo valor TOTAL
-  var textoTx=qtd===2?'Locação piscina '+fmtDataBR(data)+' e '+fmtDataBR(data2)+(cliente?' - '+cliente:''):'Locação piscina '+fmtDataBR(data)+(cliente?' - '+cliente:'');
-  window.FB.setDoc(window.FB.doc(window.FB.db,'casais',D.cod,'transacoes',txId),{
-    tipo:'entrada',valor:valor,categoria:'Piscina',icone:'🏊',
-    textoOriginal:textoTx,criadoEm:new Date().toISOString(),usuario:D.nome,dono:'Ambos'
-  });
-
   window.FB.setDoc(window.FB.doc(window.FB.db,'casais',D.cod,'locacoes',id1),{
-    data:data,valor:valorCada,cliente:cliente,obs:obs,
-    horaIni:horaIni,horaFim:horaFim,grupo:grupoId,txId:txId,
-    reservaSimples:false,usuario:D.nome
+    data:data,valor:valorCada,cliente:cliente,telefone:telefone,obs:obs,
+    horaIni:horaIni,horaFim:horaFim,grupo:grupoId,txId:txId,usuario:D.nome
   });
 
-  // 2ª locação (se for 2 dias)
+  // 2ª locação
   if(qtd===2){
     var id2='loc'+(Date.now()+1)+Math.random().toString(36).substr(2,4);
     window.FB.setDoc(window.FB.doc(window.FB.db,'casais',D.cod,'locacoes',id2),{
-      data:data2,valor:valorCada,cliente:cliente,obs:obs,
-      horaIni:horaIni2,horaFim:horaFim2,grupo:grupoId,txId:txId,
-      reservaSimples:false,usuario:D.nome
+      data:data2,valor:valorCada,cliente:cliente,telefone:telefone,obs:obs,
+      horaIni:horaIni2,horaFim:horaFim2,grupo:grupoId,txId:txId,usuario:D.nome
     });
   }
 
   document.getElementById('modal-piscina').classList.remove('aberto');
   beep();vibrar([30,40,30]);
-  toast('🏊 '+qtd+' dia(s) salvo(s)!');
+  toast('🏊 Locação salva!');
 }
 
 function removerLocacao(id,temGrupo,grupoId){
-  if(!confirm('Remover esta locação?'+(temGrupo?' (vai remover os 2 dias)':'')))return;
+  if(!confirm('Apagar esta locação?'+(temGrupo==='true'?' (vai remover os 2 dias)':'')))return;
   var loc=D.locacoes.find(function(l){return l.id===id});
 
-  if(temGrupo&&grupoId){
-    // Remove todas do grupo
+  if(temGrupo==='true'&&grupoId){
     var doGrupo=D.locacoes.filter(function(l){return l.grupo===grupoId});
     doGrupo.forEach(function(l){
       window.FB.deleteDoc(window.FB.doc(window.FB.db,'casais',D.cod,'locacoes',l.id));
@@ -1197,26 +1206,7 @@ function pararVoz(){D.ouvindo=false;if(rec)try{rec.stop()}catch(e){}uiVoz();docu
 function uiVoz(){var b=document.getElementById('btn-voz'),a1=document.getElementById('anel1'),a2=document.getElementById('anel2'),d=document.getElementById('voz-dica');if(D.ouvindo){b.textContent='🔴';b.classList.add('ouvindo');a1.classList.add('ativo');a2.classList.add('ativo');d.textContent='Ouvindo...'}else{b.textContent='🎤';b.classList.remove('ouvindo');a1.classList.remove('ativo');a2.classList.remove('ativo');d.textContent='Toque para falar'}}
 function enviarTexto(){var c=document.getElementById('campo'),t=c.value.trim();if(!t)return;c.value='';processarInput(t)}
 
-function processarInput(t){
-  var p=parse(t);
-  if(p.valor<=0){toast('❌ Valor não identificado');return}
-
-  // SE FOR PISCINA - vai para fluxo especial
-  if(p.ehPiscina){
-    iniciarLocacaoPiscina(p.valor);
-    return;
-  }
-
-  if(p.precisaDesc){
-    D.pendenteDesc=p;
-    document.getElementById('md-orig').textContent='"'+p.txt+'" - '+fmt(p.valor);
-    document.getElementById('md-input').value='';
-    document.getElementById('modal-desc').classList.add('aberto');
-    setTimeout(function(){document.getElementById('md-input').focus()},200);
-    return;
-  }
-  if(D.rapido)salvarTx(p);else abrirModal(p);
-}
+function processarInput(t){var p=parse(t);if(p.valor<=0){toast('❌ Valor não identificado');return}if(p.ehPiscina){iniciarLocacaoPiscina(p.valor);return}if(p.precisaDesc){D.pendenteDesc=p;document.getElementById('md-orig').textContent='"'+p.txt+'" - '+fmt(p.valor);document.getElementById('md-input').value='';document.getElementById('modal-desc').classList.add('aberto');setTimeout(function(){document.getElementById('md-input').focus()},200);return}if(D.rapido)salvarTx(p);else abrirModal(p)}
 
 function confirmarDescricao(){var desc=document.getElementById('md-input').value.trim();if(!desc){toast('❌ Digite o que foi');return}if(!D.pendenteDesc)return;var p=D.pendenteDesc;var emoji=getEmojiAuto(desc)||(p.tipo==='entrada'?'💰':'💸');p.categoria=desc.charAt(0).toUpperCase()+desc.slice(1);p.icone=emoji;p.dono=detectarDono(desc,p.categoria);p.precisaDesc=false;document.getElementById('modal-desc').classList.remove('aberto');if(D.rapido)salvarTx(p);else abrirModal(p);D.pendenteDesc=null}
 function fecharModalDesc(){document.getElementById('modal-desc').classList.remove('aberto');D.pendenteDesc=null}
@@ -1253,7 +1243,8 @@ function fmtS(v){return v>=1000?'R$'+(v/1000).toFixed(1)+'k':'R$'+v.toFixed(0)}
 window.removerLocacao=removerLocacao;
 
 document.addEventListener('DOMContentLoaded',function(){
-  console.log('🚀 v8 Piscina inteligente!');
+  console.log('🚀 v9 - Piscina com edição + feriados!');
+
   document.getElementById('btn-criar-novo').addEventListener('click',criarNovo);
   document.getElementById('btn-ir-conectar').addEventListener('click',irConectar);
   document.getElementById('btn-conectar-cod').addEventListener('click',conectarCod);
@@ -1285,24 +1276,22 @@ document.addEventListener('DOMContentLoaded',function(){
   document.getElementById('cal-prox').addEventListener('click',function(){mudarCalMes(1)});
 
   // MODAL DIAS
-  document.getElementById('op-1-dia').addEventListener('click',function(){this.classList.add('ativo');setTimeout(function(){selecionarQtdDias(1)},200)});
-  document.getElementById('op-2-dias').addEventListener('click',function(){this.classList.add('ativo');setTimeout(function(){selecionarQtdDias(2)},200)});
+  document.getElementById('op-1-dia').addEventListener('click',function(){this.classList.add('ativo');var self=this;setTimeout(function(){selecionarQtdDias(1);self.classList.remove('ativo')},200)});
+  document.getElementById('op-2-dias').addEventListener('click',function(){this.classList.add('ativo');var self=this;setTimeout(function(){selecionarQtdDias(2);self.classList.remove('ativo')},200)});
   document.getElementById('mdia-cancelar').addEventListener('click',function(){document.getElementById('modal-dias').classList.remove('aberto')});
   document.getElementById('modal-dias').addEventListener('click',function(e){if(e.target===this)this.classList.remove('aberto')});
 
   // MODAL PISCINA
-  document.getElementById('mp-cancelar').addEventListener('click',function(){document.getElementById('modal-piscina').classList.remove('aberto')});
+  document.getElementById('mp-cancelar').addEventListener('click',function(){document.getElementById('modal-piscina').classList.remove('aberto');D.editandoLoc=null});
   document.getElementById('mp-salvar').addEventListener('click',salvarLocacao);
   document.getElementById('mp-data').addEventListener('change',verificarFeriadoModal);
   document.getElementById('mp-data2').addEventListener('change',verificarFeriadoModal);
-  document.getElementById('modal-piscina').addEventListener('click',function(e){if(e.target===this)this.classList.remove('aberto')});
-
-  // MODAL MARCAR
-  document.getElementById('modal-marcar').addEventListener('click',function(e){if(e.target===this)this.classList.remove('aberto')});
+  document.getElementById('modal-piscina').addEventListener('click',function(e){if(e.target===this){this.classList.remove('aberto');D.editandoLoc=null}});
 
   // MODAL DETALHE
-  document.getElementById('mld-fechar').addEventListener('click',function(){document.getElementById('modal-loc-detalhe').classList.remove('aberto')});
-  document.getElementById('modal-loc-detalhe').addEventListener('click',function(e){if(e.target===this)this.classList.remove('aberto')});
+  document.getElementById('mld-fechar').addEventListener('click',function(){document.getElementById('modal-loc-detalhe').classList.remove('aberto');D.editandoLoc=null});
+  document.getElementById('mld-editar').addEventListener('click',function(){if(D.editandoLoc){document.getElementById('modal-loc-detalhe').classList.remove('aberto');abrirModalEdicao(D.editandoLoc)}});
+  document.getElementById('modal-loc-detalhe').addEventListener('click',function(e){if(e.target===this){this.classList.remove('aberto');D.editandoLoc=null}});
 
   document.getElementById('btn-salvar-nome').addEventListener('click',salvarNome);
   document.getElementById('btn-copiar-cod').addEventListener('click',copiarCod);
@@ -1323,10 +1312,7 @@ document.addEventListener('DOMContentLoaded',function(){
     var locItem=t.closest('.loc-card');
     if(locItem&&locItem.hasAttribute('data-loc')){
       var loc=D.locacoes.find(function(l){return l.id===locItem.getAttribute('data-loc')});
-      if(loc){
-        if(loc.reservaSimples)clickDiaCalendario(loc.data);
-        else mostrarDetalheLocacao(loc);
-      }
+      if(loc)mostrarDetalheLocacao(loc);
       return;
     }
     var tx=t.closest('.item-tx');
@@ -1338,7 +1324,7 @@ document.addEventListener('DOMContentLoaded',function(){
   });
 
   carregarCfg();
-  if((localStorage.getItem('cf8_login')||localStorage.getItem('cf7_login')||localStorage.getItem('cf6_login'))&&D.cod){
+  if((localStorage.getItem('cf9_login')||localStorage.getItem('cf8_login')||localStorage.getItem('cf7_login'))&&D.cod){
     document.getElementById('tela-login').classList.remove('ativa');
     document.getElementById('tela-app').classList.add('ativa');
     iniciar();
